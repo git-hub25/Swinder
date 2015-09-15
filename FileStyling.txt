@@ -1,0 +1,3 @@
+
+Models.js - model names are capitilized
+views.html - all html files are lowercase with spaces delimited by underscores e.g. view_stuff.html
