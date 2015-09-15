@@ -3,6 +3,15 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
+var mongoose = require('mongoose');
+var passport = require('passport');
+
+//add requiring models and configs here
+require('./models/Conversation');
+require('./models/Couple');
+require('./config/passport');
+
+mongoose.connect('mongodb://localhost/swinder');
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +29,9 @@ app.set('view options', {
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+var coupleRoutes = require('./routes/CoupleRoutes');
+var conversationRoutes = require('./routes/ConversationRoutes');
 
 //on homepage load, render the index page
 app.get('/', function(req, res) {
