@@ -33,12 +33,12 @@ router.param('id', function(req, res, next, id) {
 	});
 });
 
-//GET /shows
+//GET /couples
 router.get('/couple', function(req, res) {
 	res.send() //do i need to add an array in as the parameter?
 });
 
-//GET /show/{showId}
+//GET /couple /{showId}
 router.get('/couple/:id', function(req, res) {
 	res.send(req.couple);
 });
