@@ -38,6 +38,7 @@ router.get('/', function(req, res) {
 	});
 });
 
+<<<<<<< HEAD:routes/CoversationRoutes.js
 //get one conversation
 router.get('/:id', function(req, res) {
 	console.log(req.conversation);
@@ -60,3 +61,6 @@ router.delete('/:id', function(req, res) {
 });
 
 module.exports = router;
+=======
+});*/
+>>>>>>> 12f763cb0f26916d18d61d3fd6fcfbcfb555a3ec:routes/ConversationRoutes.js
