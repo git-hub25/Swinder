@@ -22,8 +22,14 @@
 			CoupleFactory.login(vm.couple).then(function(){
 				vm.status = $rootScope._couple;
 				$state.go("Profile");
-			})
-		}
+			}) ;
+		} ;
+
+		vm.logout = function() {
+			CoupleFactory.logout() ;
+			vm.status = $rootScope._couple ;
+			$state.go("Home") ;
+		} ;
 
 	}
 })();

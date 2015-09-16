@@ -1,22 +1,20 @@
 (function() {
-	'use strict';
-	angular.module('app')
-	.controller('ProfileController', ProfileController);
+  'use strict';
+  angular.module('app')
+  .controller('ProfileController', ProfileController);
 
-	ProfileController.$inject = ['CoupleFactory', 'MessageFactory', '$state', '$stateParams'];
+  ProfileController.$inject = ['CoupleFactory', 'MessageFactory', '$state', '$stateParams', '$rootScope'];
 
-	function ProfileController(CoupleFactory, MessageFactory, $state, $stateParams) {
-		var vm = this;
+  function ProfileController(CoupleFactory, MessageFactory, $state, $stateParams, $rootScope) {
+    var vm = this;
 
-		if(!$stateParams.id) {
-			CoupleFactory.getCouples().then(function(res) {
-				vm.couples = res;
-			});
-		}
+    CoupleFactory.getCoupleLoggedIn($rootScope._couple.id).then(function(res) {
+      vm.coupleLoggedIn = res;
+    });
 
-		vm.enterConversation = function() {
-			MessageFactory.enterConversation();
-			$state.go('CreateMessage');
-		}
-	}
+    vm.enterConversation = function() {
+     MessageFactory.enterConversation();
+     $state.go('CreateMessage');
+   }
+ }
 })();

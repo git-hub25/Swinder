@@ -1,12 +1,18 @@
 (function() {
 	'use strict';
 	angular.module('app')
-	.controller('HomeController', HomeController);
+	.controller('MainController', MainController);
 
-	HomeController.$inject = [];
+	MainController.$inject = [];
 
-	function HomeController() {
+	function MainController() {
 		var vm = this;
 		vm.title = 'Swinder';
+
+			CoupleFactory.getCouples().then(function(res) {
+				vm.couples = res;
+			});
+
+
 	}
 })();

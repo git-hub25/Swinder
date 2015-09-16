@@ -7,7 +7,7 @@ var Couple = mongoose.model('Couple');
 var passport = require('passport');
 var Salts = mongoose.model("Salts");
 
-//register
+//register----------------------------------------------------------------------------------------------------------
 router.post('/register', function(req, res) {
   var couple = new Couple(req.body);
   //Save couple with passwordHash field blank
@@ -83,10 +83,11 @@ router.post('/register', function(req, res) {
 
 //-----------------LOGGING IN COUPLE---------------------------------------------------------
 router.post('/login', function(req, res, next) {
-  console.log(req.body);
-  passport.authenticate('local', function(err, couple, info) {//-----NOT REACHING PASSPORT.JS 9.16 1:50am
-    if(!couple) return res.status(400).send(info);
-    res.send({token: couple.generateJWT()});
+  passport.authenticate('local', function(err, couple, info) { //-----NOT REACHING PASSPORT.JS 9.16 1:50am
+    if (!couple) return res.status(400).send(info);
+    res.send({
+      token: couple.generateJWT()
+    });
   })(req, res, next);
 });
 
@@ -94,7 +95,9 @@ router.post('/login', function(req, res, next) {
 
 //getting an individual couple
 router.param('id', function(req, res, next, id) {
-  couple.find(req.params.id, function(err, couple) {
+  Couple.findOne({
+    _id: id
+  }, function(err, couple) {
     if (err) return next({
       err: err,
       type: 'client'
@@ -106,17 +109,22 @@ router.param('id', function(req, res, next, id) {
 
 //GET /couples
 router.get('/', function(req, res) {
+
   var couples = res;
   Couple.find({})
   .exec(function(err, couples) {
-    if(err) return res.status(500).send({err: "Error inside the server."});
-    if(!couples) return res.status(400).send({err: "Couples aren't here :("});
-      res.send(couples)
+    if (err) return res.status(500).send({
+      err: "Error inside the server."
     });
+      if (!couples) return res.status(400).send({
+        err: "Couples aren't here :("
+      });
+        res.send(couples)
+      });
 });
 
 //GET /couple /{coupleId}
-router.get('/couple/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   res.send(req.couple);
 });
 
