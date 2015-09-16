@@ -1,35 +1,34 @@
 (function() {
-	'use strict';
-	angular.module('app')
-	.controller('NavBarController', NavBarController);
+  'use strict';
+  angular.module('app')
+    .controller('NavBarController', NavBarController);
 
-	NavBarController.$inject = ["$state", "CoupleFactory", "MainFactory", "$rootScope"];
+  NavBarController.$inject = ["$state", "CoupleFactory", "MainFactory", "$rootScope"];
 
-	function NavBarController($state, CoupleFactory, MainFactory, $rootScope) {
-		var vm = this;
-		vm.couple = {};
-		vm.status = $rootScope._couple;
+  function NavBarController($state, CoupleFactory, MainFactory, $rootScope) {
+    var vm = this;
+    // vm.couple = {};
+    vm.loggedInCouple = $rootScope._couple;
+    //Logs you in on register
+    vm.register = function() {
+      CoupleFactory.register(vm.couple).then(function() {
+        delete vm.couple;
+        $state.go("LoginCouple");
+      });
+    };
 
-		vm.register = function() {
-			CoupleFactory.register(vm.couple).then(function(){
-				vm.couple = {};
-				vm.couple.body = "";
-				$state.go("Profile");
-			});
-		};
+    vm.login = function() {
+      CoupleFactory.login(vm.couple).then(function() {
+        vm.loggedInCouple = $rootScope._couple;
+        $state.go("Home");
+      });
+    };
 
-		vm.login = function() {
-			CoupleFactory.login(vm.couple).then(function(){
-				vm.status = $rootScope._couple;
-				$state.go("Profile");
-			}) ;
-		} ;
+    vm.logout = function() {
+      CoupleFactory.logout();
+      vm.loggedInCouple = $rootScope._couple;
+      $state.go("Home");
+    };
 
-		vm.logout = function() {
-			CoupleFactory.logout() ;
-			vm.status = $rootScope._couple ;
-			$state.go("Home") ;
-		} ;
-
-	}
+  }
 })();

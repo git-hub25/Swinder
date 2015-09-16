@@ -7,23 +7,25 @@
 
 	function MessageController($state, MessageFactory, $rootScope) {
 		var vm = this;
-		vm.status = $rootScope._user;
+		vm.loggedInCouple = $rootScope._couple;
 		vm.message = {};
 
-		vm.getMessages = function() {	
+		vm.getMessages = function() {
 			MessageFactory.getMessages().then(function(res) {
 				vm.messages = res;
-				console.log(res);
+				// console.log(res);
 			});
 		};
-		
+
 		vm.getMessages();
 
 
-		vm.sendMessage = function(message) {
-			vm.message.createdDate = new Date(vm.message.createdDate + '-1-1');
+		vm.sendMessage = function(id) {
+			vm.message.createdDate = new Date();
+			vm.message.createdBy = vm.loggedInCouple.id;
 			MessageFactory.sendMessage(vm.message);
-			
+			delete vm.message;
+
 			vm.getMessages();
 
 		};

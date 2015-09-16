@@ -1,14 +1,35 @@
-<div ng-controller="NavBarController as n">
-	<form class="well container" ng-submit="vm.sendMessage({id: _couple._id})">
-		<label>Message</label> <br/>
-		<div class="well" ng-repeat="m in vm.messages">
-			<div> 
-				<!-- messages should alternate sides based on who is sending (styling) -->
-				{{m.messageBody}} <button type="button" ng-click="vm.deleteMessage(m)"class="btn-xs btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-			</div>
+<style>
+	.red {
+		color: red;
+		text-align: right
+	}
+
+	.blue {
+		color: blue;
+		text-align: left;
+	}
+</style>
+<!-- Change red and blue in ng-repeat to to styling classes to get alternating effect -->
+			<!-- messages should alternate sides based on who is sending (styling) -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Couple: {{vm.loggedInCouple.id}}</h1>
+<form class="well container" ng-submit="vm.sendMessage(vm.loggedInCouple.id)">
+	<label>Message</label>
+	<br/>
+	<div class="well" ng-repeat="m in vm.messages track by $index">
+		<div ng-class="{blue: $index % 2 === 0, red: $index % 2 !== 0 }">
+			<p>{{m.messageBody}}</p>
+			<button type="button" ng-click="vm.deleteMessage(m)" class="btn-xs btn btn-danger">
+				<span class="glyphicon glyphicon-remove"></span>
+			</button>
 		</div>
-		<input class="form-control" ng-model="vm.message.messageBody" placeholder="Write Message Here..."  /><br/>
-		<button type="submit" class="btn btn-md btn-success">Send Message</button>
-		<button type="button" ng-click="vm.deleteConversation({})" class="btn btn-danger btn-md">Delete Conversation</button>
-	</form>
-</div>
+	</div>
+	<input class="form-control" ng-model="vm.message.messageBody" placeholder="Write Message Here..." />
+	<br/>
+	<button type="submit" class="btn btn-md btn-success">Send Message</button>
+	<button type="button" ng-click="vm.deleteConversation({})" class="btn btn-danger btn-md">Delete Conversation</button>
+</form>
