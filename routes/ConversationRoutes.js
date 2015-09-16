@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.router();
+var router = express.Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('Couple'); //check if name is correct
 var Conversation = mongoose.model('Conversation')
@@ -33,4 +33,3 @@ router.post('/', auth, function(req, res) {
 	Conversation.find({})
 
 });*/
-

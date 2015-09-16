@@ -1,12 +1,14 @@
+//Changed var User to var Couple in all instances for clarity
+
 var express = require('express');
-var router = express.router();
+var router = express.Router();
 var mongoose = require('mongoose');
-var User = mongoose.model('Couple');
+var Couple = mongoose.model('Couple');
 var passport = require('passport');
 
 //register
 router.post('/register', function(req, res) {
-	var couple = new User(req.body);
+	var couple = new Couple(req.body);
 	couple.setPassword(req.body.password);
 	couple.save(function(err, result) {
 		if(err) console.log(err);
