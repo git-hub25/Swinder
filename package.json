@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
-<<<<<<< HEAD
     },
     "license": "MIT",
     "dependencies": {
@@ -19,18 +18,4 @@
       "passport": "^0.3.0",
       "passport-local": "^1.0.0"
     }
-=======
-  },
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.12.4",
-    "crypto": "0.0.3",
-    "ejs": "^2.3.4",
-    "express": "^4.12.4",
-    "express-jwt": "^3.1.0",
-    "jsonwebtoken": "^5.0.5",
-    "mongoose": "^4.1.7",
-    "passport": "^0.3.0",
-    "passport-local": "^1.0.0"
->>>>>>> 12f763cb0f26916d18d61d3fd6fcfbcfb555a3ec
   }
