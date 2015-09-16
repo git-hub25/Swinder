@@ -12,8 +12,6 @@
 		}).state('RegisterCouple',{
 			url: '/Register',
 			templateUrl: 'views/register_couple.html',
-			controller: "NavBarController",
-			controllerAs: "vm"
 		}).state('Profile',{
 			url: '/Profile',
 			templateUrl: 'views/profile.html',
@@ -29,7 +27,10 @@
 			templateUrl: 'views/edit_profile.html',
 			controller: "ProfileController",
 			controllerAs: "vm"
-		});
+		}).state('LoginCouple',{
+			url: '/Login',
+			templateUrl: 'views/login_couple.html'
+		})
 
 		$urlRouterProvider.otherwise('/');
 	}

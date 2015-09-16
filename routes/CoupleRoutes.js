@@ -12,14 +12,13 @@ router.post('/register', function(req, res) {
   var couple = new Couple(req.body);
   //Save couple with passwordHash field blank
   couple.save(function(err, couple) {
-    console.log("couples line17");
     if (err) console.log(err);
     if (err) return res.status(500).send({
       err: "Issues with Swinder's server :/"
     });
-    if (!couple) return res.status(400).send({
-      err: 'You messed up!'
-    });
+      if (!couple) return res.status(400).send({
+        err: 'You messed up!'
+      });
     //Creates salt with id from new couple as reference
     var salt = new Salts({
       coupleId: couple._id
@@ -31,9 +30,9 @@ router.post('/register', function(req, res) {
       if (err) return res.status(500).send({
         err: "Issues with Swinder's server :/"
       });
-      if (!salt) return res.status(400).send({
-        err: 'You messed up!'
-      });
+        if (!salt) return res.status(400).send({
+          err: 'You messed up!'
+        });
       //Update scouple with reference to salt with salt._id
       Couple.update({
         _id: salt.coupleId
@@ -43,23 +42,22 @@ router.post('/register', function(req, res) {
         if (err) return res.status(500).send({
           err: "Issues with Swinder's server :/"
         });
-        if (!coupleWithSaltId) return res.status(400).send({
-          err: 'You messed up!'
-        });
+          if (!coupleWithSaltId) return res.status(400).send({
+            err: 'You messed up!'
+          });
         //Finds couple to populate salt string to change reference id of salt to actual salt object
-        console.log(coupleWithSaltId);
         Couple.findOne({
-            _id: salt.coupleId
-          })
-          .populate({
-            path: "salt",
-            model: "Salts",
-            select: "salt"
-          })
-          .exec(function(err, coupleWithSaltString) {
-            if (err) return res.status(500).send({
-              err: "Issues with Swinder's server :/"
-            });
+          _id: salt.coupleId
+        })
+        .populate({
+          path: "salt",
+          model: "Salts",
+          select: "salt"
+        })
+        .exec(function(err, coupleWithSaltString) {
+          if (err) return res.status(500).send({
+            err: "Issues with Swinder's server :/"
+          });
             if (!coupleWithSaltString) return res.status(400).send({
               err: 'You messed up!'
             });
@@ -72,26 +70,27 @@ router.post('/register', function(req, res) {
               if (err) return res.status(500).send({
                 err: "Issues with Swinder's server :/"
               });
-              if (!result) return res.status(400).send({
-                err: 'You messed up!'
-              });
-              res.send();
-            });
+                if (!result) return res.status(400).send({
+                  err: 'You messed up!'
+                });
+                  res.send();
+                });
           });
-      });
-    });
-  });
+});
+});
+});
 });
 
-//local passport
-router.post('/login', function(req, res) {
-  passport.authenticate('local', function(err, couple, info) {
-    if (!couple) return res.status(400).send(info);
-    res.send({
-      token: couple.generateJWT()
-    });
-  })(req, res, next)
+//-----------------LOGGING IN COUPLE---------------------------------------------------------
+router.post('/login', function(req, res, next) {
+  console.log(req.body);
+  passport.authenticate('local', function(err, couple, info) {//-----NOT REACHING PASSPORT.JS 9.16 1:50am
+    if(!couple) return res.status(400).send(info);
+    res.send({token: couple.generateJWT()});
+  })(req, res, next);
 });
+
+//-------------------------------------------------------------------------------------------
 
 //getting an individual couple
 router.param('id', function(req, res, next, id) {
@@ -100,14 +99,20 @@ router.param('id', function(req, res, next, id) {
       err: err,
       type: 'client'
     });
-    req.couple = couple;
-    next();
-  });
+      req.couple = couple;
+      next();
+    });
 });
 
 //GET /couples
-router.get('/couple', function(req, res) {
-  res.send() //do i need to add an array in as the parameter?
+router.get('/', function(req, res) {
+  var couples = res;
+  Couple.find({})
+  .exec(function(err, couples) {
+    if(err) return res.status(500).send({err: "Error inside the server."});
+    if(!couples) return res.status(400).send({err: "Couples aren't here :("});
+      res.send(couples)
+    });
 });
 
 //GET /couple /{coupleId}

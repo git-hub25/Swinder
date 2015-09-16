@@ -18,5 +18,12 @@
 			});
 		};
 
+		vm.login = function() {
+			CoupleFactory.login(vm.couple).then(function(){
+				vm.status = $rootScope._couple;
+				$state.go("Profile");
+			})
+		}
+
 	}
 })();

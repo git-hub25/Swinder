@@ -18,10 +18,29 @@
 		var q = $q.defer();
 		$http.post('/api/couple/register', couple).success(function(res) {
 			q.resolve();
-			console.log(res);
 		});
 		return q.promise;
 	};
+
+	o.login = function(couple) {
+		var q = $q.defer();
+		couple.username = couple.username.toLowerCase();
+		$http.post('/api/couple/login', couple).success(function(res) {
+			setToken(res.Token);
+			$rootScope._couple = isLoggedIn();
+			q.resolve();
+		});
+		return q.promise;
+	};
+
+	//------------------------LOGIN, REGISTER, LOGOUT-----------------------------------------------
+	o.getCouples = function() {
+		var q = $q.defer();
+		$http.get('/api/couple').success(function(res) {
+			q.resolve(res);
+		});
+		return q.promise;
+	}
 
 
 	return o;
