@@ -85,7 +85,15 @@
 			q.resolve(res);
 		})
 		return q.promise;
-	}
+	};
+
+	o.getCouples = function() {
+		var q = $q.defer();
+		$http.get('/api/couple').success(function(res) {
+			q.resolve(res);
+		});
+		return q.promise;
+	};
 
 
 	$rootScope._couple = isLoggedIn() ;
