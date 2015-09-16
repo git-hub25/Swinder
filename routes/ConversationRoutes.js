@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = mongoose.model('Couple'); //check if name is correct
+var Couple = mongoose.model('Couple'); //check if name is correct
 var Conversation = mongoose.model('Conversation')
 var passport = require('passport');
 var jwt = require('express-jwt');
