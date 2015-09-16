@@ -9,6 +9,7 @@ var passport = require('passport');
 //add requiring models and configs here
 require('./models/Conversation');
 require('./models/Couple');
+require('./models/Message');
 require('./models/Salts');
 require('./config/passport');
 
@@ -33,6 +34,7 @@ app.use(bodyParser.json());
 
 var coupleRoutes = require('./routes/CoupleRoutes');
 var conversationRoutes = require('./routes/ConversationRoutes');
+var messageRoutes = require('./routes/MessageRoutes');
 
 //on homepage load, render the index page
 app.get('/', function(req, res) {

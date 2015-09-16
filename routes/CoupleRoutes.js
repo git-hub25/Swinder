@@ -67,7 +67,7 @@ router.get('/couple', function(req, res) {
 	res.send() //do i need to add an array in as the parameter?
 });
 
-//GET /couple /{showId}
+//GET /couple /{coupleId}
 router.get('/couple/:id', function(req, res) {
 	res.send(req.couple);
 });
