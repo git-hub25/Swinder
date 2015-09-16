@@ -10,8 +10,7 @@
 
 
 	//------------------------TOKENS HERE-----------------------------------------------
-	
-	console.log(localStorage.token) ;
+
 	function setToken(token) {
 		localStorage.setItem("token", token) ;
 	}
@@ -27,8 +26,6 @@
 	function isLoggedIn() {
 		var token = getToken();
 		if(token) {
-			console.log(token) ;
-			console.log(token.split(".")[1]);
 			var payload = JSON.parse(urlBase64Decoder(token.split(".")[1]));
 			if(payload.exp > Date.now() / 1000) {
 				return payload;
@@ -78,21 +75,21 @@
 		return decodeURIComponent(escape($window.atob(output)));
 	}
 
-	
+
 
 
 	//------------------------LOGIN, REGISTER, LOGOUT-----------------------------------------------
-	o.getCouples = function() {
+	o.getCoupleLoggedIn = function (id) {
 		var q = $q.defer();
-		$http.get('/api/couple').success(function(res) {
+		$http.get('/api/couple/'+ id).success(function (res) {
 			q.resolve(res);
-		});
+		})
 		return q.promise;
 	}
 
 	isLoggedIn() ;
 
-	// $rootScope._couple = isLoggedIn() ;
+	$rootScope._couple = isLoggedIn() ;
 
 
 	return o;
