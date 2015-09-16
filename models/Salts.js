@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
+
 var SaltSchema = new mongoose.Schema({
-	user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+	coupleId: {type: mongoose.Schema.Types.ObjectId, ref: "Couple"},
 	salt: String
 });
 
