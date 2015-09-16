@@ -59,5 +59,16 @@ var checkPasswordHash = crypto.pbkdf2Sync(password, salt, 1500, 64).toString("he
 return this.passwordHash === checkPasswordHash;
 }
 
+CoupleSchema.methods.generateJWT = function () {
+  var today = new Date();
+  var exp = new Date(today);
+  exp.setDate(today.getDate() + 36500);
+  return jwt.sign({
+    username: this.username,
+    id : this._id,
+    email: this.email,
+    exp: exp.getTime() / 1000
+  }, "_secretdin");
+}
 
 mongoose.model("Couple", CoupleSchema);

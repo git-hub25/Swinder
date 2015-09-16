@@ -83,7 +83,6 @@ router.post('/register', function(req, res) {
 
 //-----------------LOGGING IN COUPLE---------------------------------------------------------
 router.post('/login', function(req, res, next) {
-  console.log(req.body);
   passport.authenticate('local', function(err, couple, info) {//-----NOT REACHING PASSPORT.JS 9.16 1:50am
     if(!couple) return res.status(400).send(info);
     res.send({token: couple.generateJWT()});
