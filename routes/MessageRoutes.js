@@ -16,35 +16,40 @@ router.param('id', function(req, res, next, id) {
 	req._id = id;
 	next();
 });
-
+//Populate not working!!!!!!
 router.post('/', auth, function(req, res) {
-	console.log(req.body);
+
 	//req.body contains the createdBy, createdDate, and body
 	var message = new Message(req.body);
-	message.save(function(err, result) {
+	console.log(message, "line 24 CoupleREoutes");
+	message.save(function(err, messageResult) {
 		if(err) return res.status(500).send({err: 'Issues with the Swinder server.'});
-		if(!result) return res.status(400).send({err: "Could not send message."})
-		Couple.update({_id: message.createdBy}, {$push: { //possibly populate instead of update
-		Conversation: { //or should Conversation be messages? Look to change this if there's an error, and on line 44-47
-		_id: result._id
+		if(!messageResult) return res.status(400).send({err: "Could not send message."})
+		Couple.update({_id: message.createdBy}, {$push: {
+		conversation: {
+		_id: messageResult._id
 	}
 }}, function(err, createdBy) {
 	if(err) return res.status(500).send({err: "There was an error!"});
 	if(!createdBy) return res.status(400).send({err: "This shouldn't be happening."});
-	Message.findOne({_id: result._id}).populate('createdBy')
+	Message.findOne({_id: messageResult._id})
 	.exec(function(err, message) {
-		res.send(message)
+		message.populate({path:'createdBy', model: "Couple", select: "username"}, function (err, populatedMessage) {
+			if(err) return res.status(500).send({err: "There was an error!"});
+			if(!populatedMessage) return res.status(400).send({err: "This shouldn't be happening."});
+				res.send(populatedMessage);
+		})
+
 	});
-});	
 });
-	
+});
+
 });
 
 //get all messages
 router.get('/', function(req, res) {
 	Message.find({}).populate('createdBy')
 	.exec(function(err, Conversation) {
-		console.log(Conversation);
 		if(err) return res.status(500).send({err: "Error getting all messages"});
 		if(!Conversation) return res.status(400).send({err: "Messages don't exist"});
 		res.send(Conversation);
@@ -53,7 +58,6 @@ router.get('/', function(req, res) {
 
 //get one message
 router.get('/:id', function(req, res) {
-	console.log(req.message);
 	res.send(req.message);
 });
 

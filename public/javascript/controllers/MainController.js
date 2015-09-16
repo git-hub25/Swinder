@@ -9,10 +9,5 @@
 		var vm = this;
 		vm.title = 'Swinder';
 
-		CoupleFactory.getCouples().then(function(res) {
-			vm.couples = res;
-		});
-
-
 	}
 })();
