@@ -14,8 +14,7 @@
 
 	<div ng-controller="NavBarController as nav">
 
-		
-		
+
 		<div class="navbar navbar-app navbar-absolute-top">
 
 			<a ui-sref="Home">Home</a>
@@ -25,8 +24,13 @@
 			<a ui-sref="LoginCouple">Login</a>
 			
 			<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-				Swinder Logo
+				<img src="http://i36.photobucket.com/albums/e25/kandianne/swinder_logo.png" height="60px" width="60px" alt="swinder_logo.png"/>
 			</div>
+
+
+
+
+
 
 			<div class="btn-group pull-left">
 				<div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle btn-group">
@@ -51,35 +55,34 @@
 		</div>
 		<div class="btn-group pull-right" ui-yield-to="navbarAction">
 			<div ui-toggle="uiSidebarRight" class="btn">
-				<i class="fa fa-comment"></i>Messages
+				<i class="fa fa-comment"></i></div>
 			</div>
 		</div>
+
+
+
+		<ui-view style="position: relative; top: 10px;"></ui-view>
 	</div>
 
 
 
-<ui-view style="position: relative; top: 10px;"></ui-view>
-</div>
+	<!-- Ext Libs -->
+	<script src="angular/angular.min.js"></script>
+	<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+	<!-- Required to use $drag, $swipe and Translate services -->
+	<script src="mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
 
-
-
-<!-- Ext Libs -->
-<script src="angular/angular.min.js"></script>
-<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
-<!-- Required to use $drag, $swipe and Translate services -->
-<script src="mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
-
-<!-- Global Src -->
-<script src="/javascript/app.js"></script>
-<!-- Factories -->
-<script src="/javascript/services/MainFactory.js"></script>
-<script src="/javascript/services/CoupleFactory.js"></script>
-<script src="/javascript/services/MessageFactory.js"></script>
-<!-- Controllers -->
-<script src="/javascript/controllers/MainController.js"></script>
-<script src="/javascript/controllers/NavBarController.js"></script>
-<script src="/javascript/controllers/ProfileController.js"></script>
-<script src="/javascript/controllers/MessageController.js"></script>
+	<!-- Global Src -->
+	<script src="/javascript/app.js"></script>
+	<!-- Factories -->
+	<script src="/javascript/services/MainFactory.js"></script>
+	<script src="/javascript/services/CoupleFactory.js"></script>
+	<script src="/javascript/services/MessageFactory.js"></script>
+	<!-- Controllers -->
+	<script src="/javascript/controllers/MainController.js"></script>
+	<script src="/javascript/controllers/NavBarController.js"></script>
+	<script src="/javascript/controllers/ProfileController.js"></script>
+	<script src="/javascript/controllers/MessageController.js"></script>
 </body>
 </html>

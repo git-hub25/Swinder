@@ -3,7 +3,7 @@
 	angular.module('app')
 	.controller('MainController', MainController);
 
-	MainController.$inject = ['CoupleFactory'];
+	MainController.$inject = ["CoupleFactory"];
 
 	function MainController(CoupleFactory) {
 		var vm = this;
@@ -17,8 +17,6 @@
 		vm.getProfiles();
 
 		vm.title = 'Swinder';
-
-
 
 	}
 })();
