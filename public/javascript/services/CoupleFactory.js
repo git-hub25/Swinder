@@ -87,7 +87,6 @@
 		return q.promise;
 	}
 
-	isLoggedIn() ;
 
 	$rootScope._couple = isLoggedIn() ;
 
