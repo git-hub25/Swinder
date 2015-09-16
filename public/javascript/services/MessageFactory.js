@@ -8,14 +8,14 @@
 	function MessageFactory($http, $q) {
 		var o = {};
 		
-		/* Put in after registration is finished 
 		var getAuth = function() {
 			var auth = {
 				headers: {
 					Authorization: "Bearer " + localStorage.getItem("token")
 				}
 			};
-			return auth; */
+			return auth; 
+		};
 
 			/* because of how we have messages and conversation setup, do I have to edit
 			format of get and post calls? I'll explore.
@@ -48,14 +48,11 @@
 			return q.promise;
 		};
 
-		//insert auth below after we finish registration
 		o.sendMessage = function(message){
 			var q = $q.defer();
-			$http.post('/api/message/', message).success(function(res) {
+			$http.post('/api/message/', message, getAuth()).success(function(res) {
 				console.log(res);
 				q.resolve();
-				console.log('message was sent2!');
-
 			});
 			return q.promise;
 		};
@@ -70,13 +67,13 @@
 			return q.promise;
 		};
 
-		o.deleteMessage = function(Message) {
+		o.deleteMessage = function(message) {
 			var q = $q.defer();
 			$http.delete('api/message/' + message._id).success(function(res) {
 			});
 		};
 
-		//o.getMessages();
+		o.getMessages();
 
 		return o;
 	}

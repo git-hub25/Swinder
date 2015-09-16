@@ -23,6 +23,7 @@
 		vm.sendMessage = function(message) {
 			vm.message.createdDate = new Date(vm.message.createdDate + '-1-1');
 			MessageFactory.sendMessage(vm.message);
+			
 			vm.getMessages();
 
 		};

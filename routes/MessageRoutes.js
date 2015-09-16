@@ -16,8 +16,8 @@ router.param('id', function(req, res, next, id) {
 	req._id = id;
 	next();
 });
-//add auth?
-router.post('/', function(req, res) {
+
+router.post('/', auth, function(req, res) {
 	console.log(req.body);
 	//req.body contains the createdBy, createdDate, and body
 	var message = new Message(req.body);
