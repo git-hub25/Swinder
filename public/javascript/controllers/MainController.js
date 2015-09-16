@@ -3,15 +3,15 @@
 	angular.module('app')
 	.controller('MainController', MainController);
 
-	MainController.$inject = [];
+	MainController.$inject = ["CoupleFactory"];
 
-	function MainController() {
+	function MainController(CoupleFactory) {
 		var vm = this;
 		vm.title = 'Swinder';
 
-			CoupleFactory.getCouples().then(function(res) {
-				vm.couples = res;
-			});
+		CoupleFactory.getCouples().then(function(res) {
+			vm.couples = res;
+		});
 
 
 	}

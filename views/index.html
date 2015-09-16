@@ -14,8 +14,7 @@
 
 	<div ng-controller="NavBarController as nav">
 
-		
-		
+
 		<div class="navbar navbar-app navbar-absolute-top">
 
 			<a ui-sref="Home">Home</a>
@@ -25,7 +24,7 @@
 			<a ui-sref="LoginCouple">Login</a>
 			
 			<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-				Swinder Logo
+				<img src="swinder_logo.png"/>
 			</div>
 
 			<div class="btn-group pull-left">
@@ -58,7 +57,7 @@
 
 
 
-<ui-view style="position: relative; top: 10px;"></ui-view>
+	<ui-view style="position: relative; top: 10px;"></ui-view>
 </div>
 
 
