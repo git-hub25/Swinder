@@ -9,6 +9,7 @@ var passport = require('passport');
 //add requiring models and configs here
 require('./models/Conversation');
 require('./models/Couple');
+require('./models/Salts');
 require('./config/passport');
 
 mongoose.connect('mongodb://localhost/swinder');

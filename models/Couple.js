@@ -47,16 +47,16 @@ var CoupleSchema = new mongoose.Schema({
   }]
 });
 
-CoupleSchema.methods.setPassword = function(salt, password) {
+CoupleSchema.methods.setPassword = function(password, salt) {
 //this.salt needs to be set and retrieved in the create user route to create user password
-  var passwordHash = crypto.pbkdf2Sync(password, salt, 1500, 64).toString("hex");
-  this.passwordHash = passwordHash;
+var passwordHash = crypto.pbkdf2Sync(password, salt, 1500, 64).toString("hex");
+this.passwordHash = passwordHash;
 }
 
-CoupleSchema.methods.checkPassword = function(salt, password) {
+CoupleSchema.methods.checkPassword = function(password, salt) {
 //this.salt needs to be set and retrieved in the create user route to create user password
-  var checkPasswordHash = crypto.pbkdf2Sync(password, salt, 1500, 64).toString("hex");
-  return this.passwordHash === checkPasswordHash;
+var checkPasswordHash = crypto.pbkdf2Sync(password, salt, 1500, 64).toString("hex");
+return this.passwordHash === checkPasswordHash;
 }
 
 
