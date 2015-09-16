@@ -10,7 +10,7 @@
 			controller: "HomeController",
 			controllerAs: "vm"
 		}).state('RegisterCouple',{
-			url: '/RegisterCouple',
+			url: '/Register',
 			templateUrl: 'views/register_couple.html',
 			controller: "NavBarController",
 			controllerAs: "vm"

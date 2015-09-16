@@ -6,7 +6,7 @@ var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-//add requiring models and configs here
+//add requiring models and configs here----------------------------------------------------------------------
 require('./models/Conversation');
 require('./models/Couple');
 require('./models/Message');
@@ -32,6 +32,7 @@ app.set('view options', {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+//-------------------------DEFINING ROUTES--------------------------------------------------------
 var coupleRoutes = require('./routes/CoupleRoutes');
 var conversationRoutes = require('./routes/ConversationRoutes');
 var messageRoutes = require('./routes/MessageRoutes');
@@ -40,6 +41,11 @@ var messageRoutes = require('./routes/MessageRoutes');
 app.get('/', function(req, res) {
 	res.render('index');
 });
+
+//--------------------------SETTING UP PATHS----------------------------------------------------------
+app.use('/api/couple', coupleRoutes);
+
+//-----------------------------------------------------------------------------------------------------
 
 var server = app.listen(port, function() {
 	var host = server.address().address;
