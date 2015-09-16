@@ -25,7 +25,6 @@
 
 		o.enterConversation = function(id) {
 			console.log('started!');
-			console.log(id)
 		};
 
 		//-----------------MESSAGE FUNCTIONS---------------------------------------------------------

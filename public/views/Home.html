@@ -1,11 +1,12 @@
 <div>
 	<div class="profileBox">
-		<img src="{{vm.profilePic}}"/>
-		<img src="{{vm.otherPics}}"/> <!--have this be a carousel-->
+		<img ng-src="{{vm.randomProfile.profilePic}}"/>
+		<!-- otherPics is an array -->
+		<!--<img ng-src="{{vm.randomProfile.otherPics}}"/> have this be a carousel-->
 		<hr/>
-		<h2>{{vm.name1}} & {{vm.name2}}</h2>
-		<p>{{vm.about}}</p>
+		<h2>{{vm.randomProfile.name1}} & {{vm.randomProfile.name2}}</h2>
+		<p>{{vm.randomProfile.about}}</p>
 		<button ng-click="" class="btn btn-md btn-success"><span class="glyphicon glyphicon-fire"></span></button>
-		<button ng-click="" class="btn btn-md btn-danger "><span class="glyphicon glyphicon-remove"></span></button> 
+		<button ng-click="vm.getProfiles()" class="btn btn-md btn-danger "><span class="glyphicon glyphicon-remove"></span></button> 
 	</div>
 </div>
