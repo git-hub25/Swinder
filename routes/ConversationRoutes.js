@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = mongoose.model('Couple'); //check if name is correct
+var Couple = mongoose.model('Couple'); //check if name is correct
 var Conversation = mongoose.model('Conversation')
 var passport = require('passport');
 var jwt = require('express-jwt');
@@ -29,7 +29,34 @@ router.post('/', auth, function(req, res) {
 });
 
 //get all conversations
-/*router.get('/', function(req, res) {
-	Conversation.find({})
+router.get('/', function(req, res) {
+	Conversation.find({}).populate('user')
+	.exec(function(err, conversations) {
+		if(err) return res.status(500).send({err: "error getting all conversations"});
+		if(!conversations) return res.status(500).send({err: "conversations do not exist"});
+		res.send(conversations);
+	});
+});
 
-});*/
+//get one conversation
+router.get('/:id', function(req, res) {
+	console.log(req.conversation);
+	res.send(req.conversation);
+});
+
+router.put('/:id', function(req, res) {
+	Conversation.update({_id: req._id}, req.body).exec(function(err, result) {
+		res.send();
+	});
+});
+
+router.delete('/:id', function(req, res) {
+	Conversation.remove({_id: req._id})
+	.exec(function(err, post) {
+		if(err) return res.status(500).send({err: "error removing all conversations"});
+		if(!posts) return res.status(500).send({err: "Conversations do not exist"});
+		res.send(posts);
+	});
+});
+
+module.exports = router;

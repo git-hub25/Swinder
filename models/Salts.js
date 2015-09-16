@@ -1,13 +1,14 @@
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var crypto = require('crypto');
+
 var SaltSchema = new mongoose.Schema({
-  user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
-  salt: String
+	coupleId: {type: mongoose.Schema.Types.ObjectId, ref: "Couple"},
+	salt: String
 });
 
 SaltSchema.methods.setSalt = function () {
-  var salt = crypto.randomBytes(64).toString("hex");
-  this.salt = salt;
+	var salt = crypto.randomBytes(64).toString("hex");
+	this.salt = salt;
 }
 
 mongoose.model("Salts", SaltSchema);
