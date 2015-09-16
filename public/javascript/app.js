@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router'])
+	angular.module('app', ['ui.router', 'mobile-angular-ui'])
 	.config(Config);
 	Config.$inject = ['$stateProvider', '$urlRouterProvider'];
 	function Config($stateProvider, $urlRouterProvider) {
@@ -30,7 +30,7 @@
 		}).state('LoginCouple',{
 			url: '/Login',
 			templateUrl: 'views/login_couple.html'
-		})
+		});
 
 		$urlRouterProvider.otherwise('/');
 	}
