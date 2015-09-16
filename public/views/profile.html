@@ -1,0 +1,27 @@
+<div class="well text-center" ng-repeat="c in vm.couples">
+	
+	<p><img class="img img-circle" src="" height='90px' width='90px'></p>
+	<h3>{{c.name1}} and {{c.name2}}</h3>
+	<p>Username {{c.username}}</p>
+	<p>Email {{c.email}}</p>
+	<p>About {{c.about}}</p>
+	<p>Relationship Type {{c.relationshipType}}</p>
+	<h6>Social Media Links</h6>
+	<table class="table table­condensed table­responsive">
+		<tr>
+			<td><a href="{{c.socialLinks.facebook}}">Facebook</a></td>
+			<td><a href="{{c.socialLinks.instagram}}">Instagram</a></td>
+			<td><a href="{{c.socialLinks.twitter}}">Twitter</td>
+		</tr>
+
+
+
+	</table>
+	<br/>
+	<br/>
+	<button type="btn" ng-click="vm.enterConversation({})" class="btn btn-sm info"><span class="glyphicon glyphicon-comment"></span></button>
+	<a ui-sref="Home" class="btn btn-sm">Go Back Home</a>
+</div>
+<button type="btn" ng-click="vm.enterConversation({})" class="btn btn-sm info"><span class="glyphicon glyphicon-comment"></span></button>
+<!-- bring in the receiver's id as well -->
+<!-- creating a message by profilecontroller -->

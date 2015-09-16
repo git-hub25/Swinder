@@ -16,7 +16,7 @@ router.param('id', function(req, res, next, id) {
 	next();
 })
 
-//ref post routes
+//ref conversation routes
 router.post('/', auth, function(req, res) {
 	console.log(req.body);
 	//req.body has the properties createdBy, createdDate and recipient
@@ -44,18 +44,20 @@ router.get('/:id', function(req, res) {
 	res.send(req.conversation);
 });
 
+//edit conversation
 router.put('/:id', function(req, res) {
 	Conversation.update({_id: req._id}, req.body).exec(function(err, result) {
 		res.send();
 	});
 });
 
+//delete conversation
 router.delete('/:id', function(req, res) {
 	Conversation.remove({_id: req._id})
-	.exec(function(err, post) {
+	.exec(function(err, conversation) {
 		if(err) return res.status(500).send({err: "error removing all conversations"});
-		if(!posts) return res.status(500).send({err: "Conversations do not exist"});
-		res.send(posts);
+		if(!conversations) return res.status(500).send({err: "Conversations do not exist"});
+		res.send(conversations);
 	});
 });
 
