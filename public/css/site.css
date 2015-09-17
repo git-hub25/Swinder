@@ -18,12 +18,62 @@ body {
 	background-color: black;
 	color: white;
 	border: none;
+	box-shadow: 1px 1px 7px #BF0000;
+	height: 3.5em;
+}
+
+.navbar a, .navbar a:visited {
+	color: #BF0000;
+	text-decoration: none;
+}
+
+.navbar a:hover {
+	font-weight: bold;
 }
 
 .loggedOutHomeView {
-	background-color: red;
+	background-color: #BF0000;
 	width: 50%;
 	margin: auto;
 	color: black;
 	border: none;
+}
+
+.loggedInNav {
+	font-size: 1.3em;
+	padding-top: .7em;
+}
+
+
+.loggedInNav a {
+	margin: auto .6em;
+}
+
+.loggedInNav a:hover {
+	color: white;
+}
+.well {
+	width: 400px;
+	margin: auto;
+}
+
+.mobileNavMenu {
+	display: none;
+}
+
+
+
+/*================MEDIA QUERIES=====================*/
+
+@media only screen and (max-width: 667px){
+
+	.loggedInNav, .loggedOutNav {
+		display: none;
+	}
+
+	.mobileNavMenu {
+		display: inline;
+	}
+
+
 }
