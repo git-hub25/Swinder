@@ -24,15 +24,7 @@
     };
 
 
-    //Moved to Message Controller
-    // vm.getConversation = function(loggedInId, recipientId) {
-    //   vm.newConversation = {
-    //     createdBy: loggedInId,
-    //     recipient: recipientId
-    //   } ;
-    //   MessageFactory.enterConversation(vm.newConversation).then(function(res) {
-    //     console.log(res) ;
-    //   });
+    
 
     vm.login = function() {
       CoupleFactory.login(vm.couple).then(function() {

@@ -16,8 +16,19 @@ router.param('id', function(req, res, next, id) {
 	req._id = id;
 	next();
 });
+
+//get all conversations
+router.post('/', function(req, res) {
+	Couple.findOne(req.body).populate('conversations')
+	.exec(function(err, result) {
+		if(err) return res.status(500).send({err: "Error getting all messages"});
+		if(!result) return res.status(400).send({err: "Messages don't exist"});
+		res.send(result.conversations);
+	})
+});
+
 //Populate not working!!!!!!
-router.post('/', auth, function(req, res) {
+router.post('/newMessage', auth, function(req, res) {
 
 	//req.body contains the createdBy, createdDate, and body
 	var message = new Message(req.body);
@@ -57,20 +68,10 @@ router.post('/conversation', function(req, res) {
 	})
 })
 
-//get all messages
-router.get('/', function(req, res) {
-	Message.find({}).populate('createdBy', '_id username name1 name2 profilePic')
-	.exec(function(err, Conversation) {
-		if(err) return res.status(500).send({err: "Error getting all messages"});
-		if(!Conversation) return res.status(400).send({err: "Messages don't exist"});
-		res.send(Conversation);
-	})
-});
+
 
 //get one message
-router.get('/:id', function(req, res) {
-	res.send(req.message);
-});
+
 
 //edit message
 router.put('/:id', function(req, res) {

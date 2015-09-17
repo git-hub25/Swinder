@@ -16,10 +16,7 @@
         // console.log(res);
       });
     };
-    vm.getConversation = function() {
-
-    };
-    vm.getConversation = function(loggedInId, recipientId) {
+    vm.createConversation = function(loggedInId, recipientId) {
       vm.newConversation = {
         createdBy: loggedInId,
         recipient: recipientId
@@ -29,6 +26,14 @@
       });
     }
 
+    vm.getConversations = function() {
+      //Get request for conversations
+      MessageFactory.getConversations($rootScope._couple.id).then(function(res) {
+        console.log(res);
+      })
+
+    }
+    vm.getConversations();
 
     vm.sendMessage = function(id) {
       vm.message.createdDate = new Date();
@@ -50,6 +55,6 @@
 
     }
 
-    vm.getMessages();
+    //vm.getMessages();
   }
 })();

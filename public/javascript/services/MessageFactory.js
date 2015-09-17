@@ -3,9 +3,9 @@
 	angular.module('app')
 	.factory('MessageFactory', MessageFactory);
 
-	MessageFactory.$inject = ['$http', '$q'];
+	MessageFactory.$inject = ['$http', '$q', "$rootScope"];
 
-	function MessageFactory($http, $q) {
+	function MessageFactory($http, $q, $rootScope) {
 		var o = {};
 
 		var getAuth = function() {
@@ -46,17 +46,25 @@
 			return q.promise;
 		};
 
-		o.getMessages = function() {
+		// o.getMessages = function() {
+		// 	var q = $q.defer();
+		// 	$http.get('/api/message/').success(function(res) {
+		// 		q.resolve(res);
+		// 	});
+		// 	return q.promise;
+		// };
+		o.getConversations = function(){
 			var q = $q.defer();
-			$http.get('/api/message/').success(function(res) {
+			$http.post("/api/message/", {_id: $rootScope._couple.id}, getAuth()).success(function (res) {
 				q.resolve(res);
-			});
+
+			})
 			return q.promise;
-		};
+		}
 
 		o.sendMessage = function(message){
 			var q = $q.defer();
-			$http.post('/api/message/', message, getAuth()).success(function(res) {
+			$http.post('/api/message/newMessage', message, getAuth()).success(function(res) {
 				console.log(res.createdBy);
 				q.resolve();
 			});
@@ -79,7 +87,7 @@
 			});
 		};
 
-		o.getMessages();
+		// o.getMessages();
 
 		return o;
 	}
