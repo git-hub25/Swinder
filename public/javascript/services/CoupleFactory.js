@@ -59,9 +59,9 @@
 	};
 
 	o.logout = function() {
-		removeToken() ;
+		removeToken();
 		$rootScope._couple = isLoggedIn() ;
-	}
+	};
 
 	function urlBase64Decoder(str) {
 		var output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -73,7 +73,7 @@
 			throw 'Illegal base64url string'
 		}
 		return decodeURIComponent(escape($window.atob(output)));
-	}
+	};
 
 
 

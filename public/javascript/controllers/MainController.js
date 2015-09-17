@@ -8,6 +8,7 @@
 	function MainController(CoupleFactory) {
 		var vm = this;
 		vm.title = 'Swinder';
+		vm.matches = [];
 		vm.getProfiles = function() {
 			CoupleFactory.getCouples().then(function(res) {
 				vm.getCouples = res;
@@ -23,5 +24,12 @@
 			console.log(random)
 			return array[random];
 		};
+
+		vm.likeProfile = function(profile) {
+			vm.matches.push(profile);
+			vm.getProfiles();
+
+			console.log(vm.matches)
+		}
 	}
 })();
