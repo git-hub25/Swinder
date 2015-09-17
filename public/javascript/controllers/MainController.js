@@ -17,11 +17,10 @@
 			});
 		};
 
-<<<<<<< HEAD
+
 		// var loggedInCouple = $rootScope._couple ;
 
-		// Takes 2 ids recipient and logged in id
-		// pass it to conversation router and create a new conversation.
+		
 		vm.getConversation = function(loggedInId, recipientId) {
 			vm.newConversation = {
 				createdBy: loggedInId,
@@ -33,7 +32,7 @@
 		}
 		// Testing getConversation
 		// vm.getConversation(26, 26) ;	
-=======
+
 		vm.getProfiles();
 
 		vm.profileRandomizer = function(array) {
@@ -48,6 +47,6 @@
 
 			console.log(vm.matches)
 		}
->>>>>>> 6db1fc67e52885f7632133695445b79805e79f41
+
 	}
 })();
