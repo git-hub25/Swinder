@@ -33,6 +33,7 @@
     vm.logout = function() {
       CoupleFactory.logout();
       vm.loggedInCouple = $rootScope._couple;
+      delete vm.couple;
       $state.go("Home");
     };
 
