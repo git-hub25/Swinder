@@ -20,7 +20,7 @@
 <form class="well container" ng-submit="vm.sendMessage()">
 	<label>Messages</label>
 	<br/>
-	<div class="well" ng-repeat="m in vm.messages track by $index">
+	<div class="well" ng-repeat="m in vm.conversationMessages track by $index | orderBy: 'createdDate'">
 		<div ng-class="{blue: $index % 2 === 0, red: $index % 2 !== 0 }">
 			<h4>{{m.messageBody}}</h4>
 			<p>{{m.createdBy.username}}</p>
