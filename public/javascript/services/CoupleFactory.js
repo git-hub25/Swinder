@@ -94,13 +94,10 @@
 
 
 	o.editProfile = function (edittedProfile) {
-		console.log(edittedProfile);
-
 		var q = $q.defer();
 		$http.put('/api/couple/' + edittedProfile._id, edittedProfile).success(function(res){
 			q.resolve(res);
 			console.log(res);
-
 		});
 		return q.promise;
 	}
