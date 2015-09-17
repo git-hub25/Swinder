@@ -1,6 +1,8 @@
 <div class="well text-center">
 
-	<p><img class="img img-circle" src="" height='90px' width='90px'></p>
+	<p>
+		<img class="img img-circle" src="" height='90px' width='90px'>
+	</p>
 	<h3>{{vm.coupleLoggedIn.name1}} and {{vm.coupleLoggedIn.name2}}</h3>
 	<p>Username {{vm.coupleLoggedIn.username}}</p>
 	<p>Email {{vm.coupleLoggedIn.email}}</p>
@@ -15,14 +17,22 @@
 		</tr>
 	</table>
 
-	<br/>
-	<br/>
-
-	<a ng-click="vm.enterConversation({})" class="btn btn-sm info"><span class="glyphicon glyphicon-comment"></span></a>
-	
 	<div>
 		<a type="btn" ui-sref="EditProfile({id:vm.coupleLoggedIn._id})" class="btn btn-sm info"><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a>
+</div>
+<br/>
+<br/>
+</div>
+<div class="row">
+	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<div ng-repeat="couple in vm.likedCouples">
+				<span>{{couple.username}}</span>
+				<span>{{couple._id}}</span>
+				<a ng-click="vm.enterConversation(couple._id)" class="btn btn-sm info">
+					<span class="glyphicon glyphicon-comment"></span>
+				</a>
+			</div>
+		</div>
 	</div>
-
-
 </div>

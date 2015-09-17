@@ -140,7 +140,7 @@ router.post('/get-matches', function (req, res) {
   Couple.findOne(req.body, {matches: 1}).exec(function(err, coupleWithJustArrayOfMatches) {
     if(err) return res.status(500).send({err: "Error handling server request for swing matches"});
     if(!coupleWithJustArrayOfMatches) return res.status(400).send({err: "No coupleWithJustArrayOfMatchess from swing matches!!!"});
-    coupleWithJustArrayOfMatches.populate({path: "matches", model: "Couple"}, function (err, coupleWithPopulatedArray) {
+    coupleWithJustArrayOfMatches.populate("matches", "_id username name1 name2 relationshipType otherPics", function (err, coupleWithPopulatedArray) {
       if(err) return res.status(500).send({err: "Error populating array"});
       if(!coupleWithPopulatedArray) return res.status(500).send({err: "Sorry, server goofed!!!"});
       res.send(coupleWithPopulatedArray.matches);

@@ -23,7 +23,7 @@
 
    vm.loadMatches = function() {
      MainFactory.loadMatches($rootScope._couple.id).then(function (res) {
-       console.log(res);
+       vm.likedCouples = res;
 
      })
    };
