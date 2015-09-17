@@ -27,7 +27,7 @@
 		};
 		o.loadMatches = function (id) {
 			var q = $q.defer();
-			$http.post('/api/couple/matches', {_id: id}).success(function(res) {
+			$http.post('/api/couple/get-matches', {_id: id}).success(function(res) {
 				q.resolve(res);
 			});
 			return q.promise;

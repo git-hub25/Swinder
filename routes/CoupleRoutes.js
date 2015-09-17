@@ -128,7 +128,15 @@ router.get('/:id', function(req, res) {
   res.send(req.couple);
 });
 
-router.post('/matches', function (req, res) {
+router.post('/set-matches', function (req, res) {
+  Couple.update({_id: req.body.coupleLoggedInId}, {$push: {matches: {_id: req.body.coupleLikedId}}}).exec(function (err, couple) {
+    if(err) return res.status(500).send({err: "Error handling server request for swing matches"});
+    if(!couple) return res.status(400).send({err: "No such couple!"});
+    res.send(couple);
+  })
+})
+
+router.post('/get-matches', function (req, res) {
   Couple.findOne(req.body, {matches: 1}).exec(function(err, coupleWithJustArrayOfMatches) {
     if(err) return res.status(500).send({err: "Error handling server request for swing matches"});
     if(!coupleWithJustArrayOfMatches) return res.status(400).send({err: "No coupleWithJustArrayOfMatchess from swing matches!!!"});

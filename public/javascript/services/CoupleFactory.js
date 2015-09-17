@@ -75,7 +75,7 @@
 
 
 
-	//------------------------LOGIN, REGISTER, LOGOUT, EDIT PROFILE-----------------------------------------------
+	//------------------------GETTING DATA FOR COUPLES-----------------------------------------------
 	o.getCoupleLoggedIn = function (id) {
 		var q = $q.defer();
 		$http.get('/api/couple/'+ id).success(function (res) {
@@ -83,6 +83,14 @@
 		})
 		return q.promise;
 	};
+
+o.postMatches = function (id) {
+	var q = $q.defer();
+	$http.post('/api/couple/set-matches', {coupleLoggedInId: $rootScope._couple.id, coupleLikedId: id}).success(function (res) {
+		q.resolve(res);
+	})
+	return q.promise;
+}
 
 	o.getCouples = function() {
 		var q = $q.defer();

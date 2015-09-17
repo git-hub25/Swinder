@@ -12,7 +12,6 @@
 
     vm.profileRandomizer = function(array) {
       var random = Math.floor((Math.random() * array.length));
-      console.log(random);
       return array[random];
     };
 
@@ -20,22 +19,20 @@
       CoupleFactory.getCouples().then(function(res) {
         vm.getCouples = res;
         vm.randomProfile = vm.profileRandomizer(vm.getCouples);
-        console.log(vm.getCouples);
       });
     };
 
 
-    // var loggedInCouple = $rootScope._couple ;
-
-
-    // vm.getProfiles();
 
 
 
-    vm.likeProfile = function(profile) {
-      vm.matches.push(profile);
+
+    vm.likeProfile = function(id) {
+      CoupleFactory.postMatches(id).then(function (res) {
       vm.getProfiles();
+      })
     }
+      vm.getProfiles();
   }
 
 })();
