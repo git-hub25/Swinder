@@ -35,9 +35,6 @@
 		}
 	}
 
-
-
-
 	//------------------------LOGIN, REGISTER, LOGOUT-----------------------------------------------
 	o.register = function(couple) {
 		var q = $q.defer();
@@ -59,9 +56,9 @@
 	};
 
 	o.logout = function() {
-		removeToken() ;
+		removeToken();
 		$rootScope._couple = isLoggedIn() ;
-	}
+	};
 
 	function urlBase64Decoder(str) {
 		var output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -73,20 +70,37 @@
 			throw 'Illegal base64url string'
 		}
 		return decodeURIComponent(escape($window.atob(output)));
-	}
+	};
 
 
 
 
-	//------------------------LOGIN, REGISTER, LOGOUT-----------------------------------------------
+	//------------------------LOGIN, REGISTER, LOGOUT, EDIT PROFILE-----------------------------------------------
 	o.getCoupleLoggedIn = function (id) {
 		var q = $q.defer();
 		$http.get('/api/couple/'+ id).success(function (res) {
 			q.resolve(res);
 		})
 		return q.promise;
-	}
+	};
 
+	o.getCouples = function() {
+		var q = $q.defer();
+		$http.get('/api/couple').success(function(res) {
+			q.resolve(res);
+		});
+		return q.promise;
+	};
+
+
+	o.editProfile = function (edittedProfile) {
+		var q = $q.defer();
+		$http.put('/api/couple/' + edittedProfile._id, edittedProfile).success(function(res){
+			q.resolve(res);
+			console.log(res);
+		});
+		return q.promise;
+	}
 
 	$rootScope._couple = isLoggedIn() ;
 

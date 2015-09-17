@@ -8,13 +8,22 @@
   function ProfileController(CoupleFactory, MessageFactory, $state, $stateParams, $rootScope) {
     var vm = this;
 
-    CoupleFactory.getCoupleLoggedIn($rootScope._couple.id).then(function(res) {
-      vm.coupleLoggedIn = res;
-    });
+    //checks if visitor is logged in
+    if($rootScope._couple) {
+      CoupleFactory.getCoupleLoggedIn($rootScope._couple.id).then(function(res) {
+
+        vm.coupleLoggedIn = res;
+      })
+    };
 
     vm.enterConversation = function() {
      MessageFactory.enterConversation();
      $state.go('CreateMessage');
-   }
+   };
+
+   vm.loadMatches = function() {
+
+   };
+
  }
 })();

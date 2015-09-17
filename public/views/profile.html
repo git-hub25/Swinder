@@ -13,10 +13,16 @@
 			<td><a href="{{vm.coupleLoggedIn.socialLinks.instagram}}">Instagram</a></td>
 			<td><a href="{{vm.coupleLoggedIn.socialLinks.twitter}}">Twitter</td>
 		</tr>
-
 	</table>
+
 	<br/>
 	<br/>
-	<button type="btn" ng-click="vm.enterConversation({})" class="btn btn-sm info"><span class="glyphicon glyphicon-comment"></span></button>
-	<a ui-sref="Home" class="btn btn-sm">Go Back Home</a>
+
+	<a ng-click="vm.enterConversation({})" class="btn btn-sm info"><span class="glyphicon glyphicon-comment"></span></a>
+	
+	<div>
+		<a type="btn" ui-sref="EditProfile({id:vm.coupleLoggedIn._id})" class="btn btn-sm info"><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a>
+	</div>
+
+
 </div>

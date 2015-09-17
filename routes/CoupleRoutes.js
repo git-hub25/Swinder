@@ -123,9 +123,21 @@ router.get('/', function(req, res) {
       });
 });
 
-//GET /couple /{coupleId}
+//GET /couple & Update /{coupleId}-----------------------------------
 router.get('/:id', function(req, res) {
   res.send(req.couple);
+});
+
+router.put('/:id', function(req, res) {
+  var coupleProfile = req.body;
+  Couple.update({_id: req.body._id}, coupleProfile)
+  .exec(function(err, couple){
+    console.log(couple + "line135coupleroutes")
+    if(err) return res.status(500).send({err: "error getting couple to edit"});
+    if(!couple) return res.status(400).send({err: "couple profile isn't existing"});
+    res.send(couple);
+    console.log("140coupleroutes" + couple)
+  });
 });
 
 module.exports = router;
