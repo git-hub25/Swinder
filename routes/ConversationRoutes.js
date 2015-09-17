@@ -10,9 +10,11 @@ var auth = jwt({
 	userProperty : 'payload',
 	secret : '_secretdin'
 });
-
+//Hacky way of getting by recipientId and loggedInUserId into the the router with just a get called.
+//Refer to MessageFactory enterConversation function on line 27* -may change
 router.param('id', function(req, res, next, id) {
-	req._id = id;
+	req.recipientId = id.split("|")[0];
+	req.createdById = id.split("|")[1];
 	next();
 })
 
@@ -38,10 +40,24 @@ router.get('/', function(req, res) {
 	});
 });
 
-//get one conversation
+//get one conversation with some Logic ;)
+//It searches the the Convesation collection for a converstaion between individual and recipient
+//If the converstaion exists, great, it returns it on line 57
+//If not it creates one with the recipientId and the loggedInUserId as recipient and createdBy property respectively
 router.get('/:id', function(req, res) {
-	console.log(req.conversation);
-	res.send(req.conversation);
+	Conversation.findOne({recipient: req.recipientId, createdBy: req.createdById}, function (err, convoAlreadyThere) {
+		if(err) return res.status(500).send({err: "There was an error on the server getting the conversation"});
+		if(!convoAlreadyThere) {
+			var conversation = new Conversation({createdBy: req.createdById, recipient: req.recipientId});
+			conversation.createdDate = new Date();
+			conversation.save(function (err, newConvoCreated) {
+				if(err) return res.status(500).send({err: "There was an error saving the new converstaion!!"});
+				if(!newConvoCreated)	return res.status(500).send({err: "Umm not sure what happened but saving the conversation went wrong"});
+				 return res.send(newConvoCreated);
+			})
+		}
+		else res.send(convoAlreadyThere);
+	});
 });
 
 //edit conversation

@@ -25,7 +25,7 @@
         console.log(res);
       });
     }
-
+    //Needs to be fixed!!
     vm.getConversations = function() {
       //Get request for conversations
       MessageFactory.getConversations($rootScope._couple.id).then(function(res) {

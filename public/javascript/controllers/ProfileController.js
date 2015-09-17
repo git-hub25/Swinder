@@ -16,9 +16,11 @@
       })
     };
 
-    vm.enterConversation = function() {
-     MessageFactory.enterConversation();
+    vm.enterConversation = function(coupleToChatWithId) {
+     MessageFactory.enterConversation(coupleToChatWithId).then(function (res) {
+
      $state.go('CreateMessage');
+     });
    };
 
    vm.loadMatches = function() {

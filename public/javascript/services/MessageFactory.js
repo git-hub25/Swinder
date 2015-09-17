@@ -24,9 +24,9 @@
 		//-----------------CONVERSATION FUNCTIONS---------------------------------------------------------
 
 
-		o.enterConversation = function(conversation) {
+		o.enterConversation = function(recipientId) {
 			var q = $q.defer();
-			$http.post('/api/message/conversation', conversation).success(function(res) {
+			$http.get('/api/conversation/'+ recipientId + "|" + $rootScope._couple.id).success(function(res) {
 				console.log(res);
 				q.resolve();
 			});
