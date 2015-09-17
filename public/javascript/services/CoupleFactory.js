@@ -35,9 +35,6 @@
 		}
 	}
 
-
-
-
 	//------------------------LOGIN, REGISTER, LOGOUT-----------------------------------------------
 	o.register = function(couple) {
 		var q = $q.defer();
@@ -78,7 +75,7 @@
 
 
 
-	//------------------------LOGIN, REGISTER, LOGOUT-----------------------------------------------
+	//------------------------LOGIN, REGISTER, LOGOUT, EDIT PROFILE-----------------------------------------------
 	o.getCoupleLoggedIn = function (id) {
 		var q = $q.defer();
 		$http.get('/api/couple/'+ id).success(function (res) {
@@ -95,6 +92,15 @@
 		return q.promise;
 	};
 
+
+	o.editProfile = function (edittedProfile) {
+		var q = $q.defer();
+		$http.put('/api/couple/' + edittedProfile._id, edittedProfile).success(function(res){
+			q.resolve(res);
+			console.log(res);
+		});
+		return q.promise;
+	}
 
 	$rootScope._couple = isLoggedIn() ;
 

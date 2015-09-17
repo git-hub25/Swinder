@@ -23,7 +23,7 @@
 			controller: "MessageController",
 			controllerAs: "vm"
 		}).state('EditProfile',{
-			url: '/EditProfile',
+			url: '/EditProfile/:id',
 			templateUrl: 'views/edit_profile.html',
 			controller: "ProfileController",
 			controllerAs: "vm"

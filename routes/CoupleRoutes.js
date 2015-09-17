@@ -123,9 +123,34 @@ router.get('/', function(req, res) {
       });
 });
 
-//GET /couple /{coupleId}
+//GET /couple & Update /{coupleId}-----------------------------------
 router.get('/:id', function(req, res) {
   res.send(req.couple);
+});
+
+router.post('/matches', function (req, res) {
+  Couple.findOne(req.body, {matches: 1}).exec(function(err, coupleWithJustArrayOfMatches) {
+    if(err) return res.status(500).send({err: "Error handling server request for swing matches"});
+    if(!coupleWithJustArrayOfMatches) return res.status(400).send({err: "No coupleWithJustArrayOfMatchess from swing matches!!!"});
+    coupleWithJustArrayOfMatches.populate({path: "matches", model: "Couple"}, function (err, coupleWithPopulatedArray) {
+      if(err) return res.status(500).send({err: "Error populating array"});
+      if(!coupleWithPopulatedArray) return res.status(500).send({err: "Sorry, server goofed!!!"});
+      res.send(coupleWithPopulatedArray.matches);
+
+    })
+
+  })
+})
+router.put('/:id', function(req, res) {
+  var coupleProfile = req.body;
+  Couple.update({_id: req.body._id}, coupleProfile)
+  .exec(function(err, couple){
+    console.log(couple + "line135coupleroutes")
+    if(err) return res.status(500).send({err: "error getting couple to edit"});
+    if(!couple) return res.status(400).send({err: "couple profile isn't existing"});
+    res.send(couple);
+    console.log("140coupleroutes" + couple)
+  });
 });
 
 module.exports = router;

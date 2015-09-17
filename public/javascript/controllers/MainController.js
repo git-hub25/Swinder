@@ -3,9 +3,9 @@
 	angular.module('app')
 	.controller('MainController', MainController);
 
-	MainController.$inject = ["CoupleFactory"];
+	MainController.$inject = ["CoupleFactory", "$rootScope", 'MessageFactory'];
 
-	function MainController(CoupleFactory) {
+	function MainController(CoupleFactory, $rootScope, MessageFactory) {
 		var vm = this;
 		vm.title = 'Swinder';
 		vm.matches = [];
@@ -16,6 +16,13 @@
 				console.log(vm.getCouples);
 			});
 		};
+
+
+		// var loggedInCouple = $rootScope._couple ;
+
+		}
+		// Testing getConversation
+		// vm.getConversation(26, 26) ;
 
 		vm.getProfiles();
 
@@ -29,8 +36,7 @@
 			
 			vm.matches.push(profile);
 			vm.getProfiles();
-
-			console.log(vm.matches)
 		}
+
 	}
 })();

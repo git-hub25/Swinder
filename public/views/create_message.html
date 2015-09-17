@@ -16,13 +16,15 @@
 <br>
 <br>
 <br>
-<h1>Couple: {{vm.loggedInCouple.id}}</h1> <!-- The name in the h1 should be the user's match-->
+<!-- The name in the h1 should be the user's match-->
 <form class="well container" ng-submit="vm.sendMessage(vm.loggedInCouple.id)">
-	<label>Message</label>
+	<label>Messages</label>
 	<br/>
 	<div class="well" ng-repeat="m in vm.messages track by $index">
 		<div ng-class="{blue: $index % 2 === 0, red: $index % 2 !== 0 }">
-			<p>{{m.messageBody}}</p>
+			<h4>{{m.messageBody}}</h4>
+			<p>{{m.createdBy.username}}</p>
+
 			<button type="button" ng-click="vm.deleteMessage(m)" class="btn-xs btn btn-danger">
 				<span class="glyphicon glyphicon-remove"></span>
 			</button>

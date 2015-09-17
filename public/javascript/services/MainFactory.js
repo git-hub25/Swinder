@@ -17,7 +17,7 @@
 			}
 			return auth ;
 		}
-		
+
 		o.getCouples = function() {
 			var q = $q.defer();
 			$http.get('/api/couple').success(function(res) {
@@ -25,6 +25,13 @@
 			});
 			return q.promise;
 		};
+		o.loadMatches = function (id) {
+			var q = $q.defer();
+			$http.post('/api/couple/matches', {_id: id}).success(function(res) {
+				q.resolve(res);
+			});
+			return q.promise;
+		}
 
 
 		return o;
