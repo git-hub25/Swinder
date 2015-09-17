@@ -21,8 +21,9 @@
 	<label>Messages</label>
 	<br/>
 	<div class="well" ng-repeat="m in vm.conversationMessages track by $index | orderBy: 'createdDate'">
-		<div ng-class="{blue: $index % 2 === 0, red: $index % 2 !== 0 }">
-			<h4>{{m.messageBody}}</h4>
+		<div ng-class="{blue: vm.recipientCouple === m.createdBy._id, red: vm.loggedInCouple === m.createdBy._id}">
+			<h4 style>{{m._id}}</h4>
+			<h4 style>{{m.messageBody}}</h4>
 			<p>{{m.createdBy.username}}</p>
 			<button type="button" ng-click="vm.deleteMessage(m)" class="btn-xs btn btn-danger">
 				<span class="glyphicon glyphicon-remove"></span>

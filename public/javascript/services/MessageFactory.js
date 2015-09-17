@@ -24,7 +24,7 @@
 		o.enterConversation = function(recipientId) {
 			var q = $q.defer();
 			$http.get('/api/conversation/'+ recipientId + "|" + $rootScope._couple.id).success(function(res) {
-				console.log(res);
+				//Gets or creates convo from the message html. Res is the convo that is created or found
 				q.resolve(res);
 			});
 			return q.promise;
@@ -55,7 +55,7 @@
 		o.getMessage = function(id) {
 			var q = $q.defer();
 			$http.get('/api/message/' + id).success(function(res) {
-				console.log('Message retrieved');
+
 				q.resolve();
 			});
 			return q.promise;
@@ -63,8 +63,9 @@
 
 		o.sendMessage = function(message){
 			var q = $q.defer();
+			//New mAssage gets created
 			$http.post('/api/message/newMessage', {actualMessage: message, conversationId: $rootScope._conversation._id}, getAuth()).success(function(res) {
-				console.log(res);
+
 				q.resolve();
 			});
 			return q.promise;
