@@ -17,12 +17,18 @@
 
 		<div class="navbar navbar-app navbar-absolute-top">
 
-			<a ui-sref="Home">Home</a>
-			<a ui-sref="RegisterCouple">Register </a>
-			<a ui-sref="Profile">Profile</a>
-			<a ui-sref="CreateMessage">CreateMessage</a>
-			<a ng-hide="nav.loggedInCouple" ui-sref="LoginCouple">Login</a>
-			<a ng-show="nav.loggedInCouple" ng-click="nav.logout();">Logout</a>
+			<div ng-show="nav.loggedInCouple">
+				<a ui-sref="Home">Home</a>
+				<a ui-sref="Profile">Profile</a>
+				<a ui-sref="CreateMessage">CreateMessage</a>
+				<a ng-click="nav.logout();">Logout</a>
+			</div>
+
+			<div ng-hide="nav.loggedInCouple">
+				<a ui-sref="RegisterCouple">Register </a>
+				<a ui-sref="LoginCouple">Login</a>
+			</div>
+
 
 
 			<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
