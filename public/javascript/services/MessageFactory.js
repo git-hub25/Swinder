@@ -49,6 +49,7 @@
 		o.getMessages = function() {
 			var q = $q.defer();
 			$http.get('/api/message/').success(function(res) {
+				console.log(res);
 				q.resolve(res);
 			});
 			return q.promise;
@@ -57,7 +58,7 @@
 		o.sendMessage = function(message){
 			var q = $q.defer();
 			$http.post('/api/message/', message, getAuth()).success(function(res) {
-				console.log(res);
+				console.log(res.createdBy);
 				q.resolve();
 			});
 			return q.promise;
