@@ -5,6 +5,10 @@ body {
 	padding-top: 6em;
 }
 
+.container{
+	flex-wrap: nowrap | wrap | wrap-reverse;
+}
+
 .matchPhoto {
 	height: 200px;
 }
