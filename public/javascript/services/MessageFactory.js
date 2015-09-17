@@ -23,9 +23,13 @@
 
 		//-----------------CONVERSATION FUNCTIONS---------------------------------------------------------
 
-		o.enterConversation = function(id) {
-			console.log('started!');
-			console.log(id)
+		o.enterConversation = function(conversation) {
+			var q = $q.defer();
+			$http.post('/api/message/conversation', conversation).success(function(res) {
+				console.log(res);
+				q.resolve();
+			});
+			return q.promise;
 		};
 
 		//-----------------MESSAGE FUNCTIONS---------------------------------------------------------

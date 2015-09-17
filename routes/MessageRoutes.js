@@ -25,26 +25,37 @@ router.post('/', auth, function(req, res) {
 	message.save(function(err, messageResult) {
 		if(err) return res.status(500).send({err: 'Issues with the Swinder server.'});
 		if(!messageResult) return res.status(400).send({err: "Could not send message."})
-		Couple.update({_id: message.createdBy}, {$push: {
-		conversation: {
-		_id: messageResult._id
-	}
-}}, function(err, createdBy) {
-	if(err) return res.status(500).send({err: "There was an error!"});
-	if(!createdBy) return res.status(400).send({err: "This shouldn't be happening."});
-	Message.findOne({_id: messageResult._id})
-	.exec(function(err, message) {
-		message.populate({path:'createdBy', model: "Couple", select: "username"}, function (err, populatedMessage) {
-			if(err) return res.status(500).send({err: "There was an error!"});
-			if(!populatedMessage) return res.status(400).send({err: "This shouldn't be happening."});
-				res.send(populatedMessage);
-		})
+			Couple.update({_id: message.createdBy}, {$push: {
+				conversation: {
+					_id: messageResult._id
+				}
+			}}, function(err, createdBy) {
+				if(err) return res.status(500).send({err: "There was an error!"});
+				if(!createdBy) return res.status(400).send({err: "This shouldn't be happening."});
+				Message.findOne({_id: messageResult._id})
+				.exec(function(err, message) {
+					message.populate({path:'createdBy', model: "Couple", select: "username"}, function (err, populatedMessage) {
+						if(err) return res.status(500).send({err: "There was an error!"});
+						if(!populatedMessage) return res.status(400).send({err: "This shouldn't be happening."});
+						res.send(populatedMessage);
+					})
 
+				});
+			});
 	});
-});
-});
 
 });
+
+router.post('/conversation', function(req, res) {
+	console.log(req.body);
+	var conversation = new Conversation(req.body) ;
+	conversation.createdDate = new Date() ;
+	conversation.save(function(err, result) {
+		if(err) return res.status(500).send({ err: 'Server error' });
+		if(!result) return res.status(400).send({ err: 'Server error' });;
+		res.send() ;
+	})
+})
 
 //get all messages
 router.get('/', function(req, res) {
