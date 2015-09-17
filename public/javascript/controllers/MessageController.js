@@ -14,7 +14,7 @@
         //Res is the entire convo between users. we are only interested in the array on the message property
         vm.recipientCouple = res.recipient;
         vm.loggedInCouple = res.createdBy;
-        console.log(vm.recipientCouple, " space ", vm.recipientCouple);
+        console.log(vm.recipientCouple, " space ", vm.loggedInCouple);
         vm.conversationMessages = res.message;
       });
     }

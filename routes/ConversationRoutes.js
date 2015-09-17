@@ -98,54 +98,68 @@ router.get('/:id', function(req, res) {
       err: "There was an error on the server getting the conversation"
     });
     if (!convoAlreadyThere) {
-      var conversation = new Conversation({
-        createdBy: req.createdById,
-        recipient: req.recipientId
-      });
-      conversation.createdDate = new Date();
-      conversation.save(function(err, newConvoCreated) {
+      Conversation.findOne({
+        recipient: req.createdById,
+        createdBy: req.recipientId
+      }, function(err, convoExistsWithSwappedRoles) {
         if (err) return res.status(500).send({
-          err: "There was an error saving the new converstaion!!"
+          err: "There was an error finding swapped converstaion!!"
         });
-        if (!newConvoCreated) return res.status(500).send({
-          err: "Umm not sure what happened but saving the conversation went wrong"
-        });
-        Couple.update({
-            _id: req.recipientId
-          }, {
-            $push: {
-              conversation: {
-                _id: newConvoCreated._id
-              }
-            }
-          },
-          function(err, result) {
-            if (err) return res.status(500).send({
-              err: "There was an error updating the new converstaion!!"
-            });
-            if (!result) return res.status(500).send({
-              err: "Umm not sure what happened but updating the conversation went wrong"
-            });
+        if (!convoExistsWithSwappedRoles) {
+          var conversation = new Conversation({
+            createdBy: req.createdById,
+            recipient: req.recipientId
           });
-        Couple.update({
-            _id: req.createdById
-          }, {
-            $push: {
-              conversation: {
-                _id: newConvoCreated._id
-              }
-            }
-          },
-          function(err, result) {
+          conversation.createdDate = new Date();
+          conversation.save(function(err, newConvoCreated) {
             if (err) return res.status(500).send({
-              err: "There was an error updating the new converstaion!!"
+              err: "There was an error saving the new converstaion!!"
             });
-            if (!result) return res.status(500).send({
-              err: "Umm not sure what happened but updating the conversation went wrong"
+            if (!newConvoCreated) return res.status(500).send({
+              err: "Umm not sure what happened but saving the conversation went wrong"
             });
-          });
-        return res.send(newConvoCreated);
-      })
+            Couple.update({
+                _id: req.recipientId
+              }, {
+                $push: {
+                  conversation: {
+                    _id: newConvoCreated._id
+                  }
+                }
+              },
+              function(err, result) {
+                if (err) return res.status(500).send({
+                  err: "There was an error updating the new converstaion!!"
+                });
+                if (!result) return res.status(500).send({
+                  err: "Umm not sure what happened but updating the conversation went wrong"
+                });
+              });
+            Couple.update({
+                _id: req.createdById
+              }, {
+                $push: {
+                  conversation: {
+                    _id: newConvoCreated._id
+                  }
+                }
+              },
+              function(err, result) {
+                if (err) return res.status(500).send({
+                  err: "There was an error updating the new converstaion!!"
+                });
+                if (!result) return res.status(500).send({
+                  err: "Umm not sure what happened but updating the conversation went wrong"
+                });
+              });
+            return res.send(newConvoCreated);
+          })
+        } else res.send(convoExistsWithSwappedRoles);
+      });
+
+
+      ///==============
+
     } else res.send(convoAlreadyThere);
   });
 });
