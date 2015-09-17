@@ -12,9 +12,24 @@
       vm.coupleLoggedIn = res;
     });
 
+    if(!$stateParams.id) {
+      $state.go("Profile");
+    }else {
+      CoupleFactory.getCoupleLoggedIn($stateParams.id).then(function(res){
+        vm.couple = res;
+      });
+    };
+
     vm.enterConversation = function() {
      MessageFactory.enterConversation();
      $state.go('CreateMessage');
    }
- }
+
+   //---------------- EDIT PROFILE--------------------------
+   vm.editProfile = function() {
+    CoupleFactory.editProfile(vm.couple);
+    $state.go("Profile");
+  };
+
+}
 })();

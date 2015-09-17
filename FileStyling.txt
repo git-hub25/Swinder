@@ -3,3 +3,6 @@ Models.js - model names are capitilized
 views.html - all html files are lowercase with spaces delimited by underscores e.g. view_stuff.html
 ServerRoutes.js - all router names are capitilized with camel case
 propertyOfObjects - all property names on objects are camelCase
+
+
+PUT AN ALERT WHEN PASSWORD AND USERNAME COMBO ARE INCORRECT

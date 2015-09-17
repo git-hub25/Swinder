@@ -1,13 +1,19 @@
 (function() {
   'use strict';
   angular.module('app')
-    .controller('NavBarController', NavBarController);
+  .controller('NavBarController', NavBarController);
 
   NavBarController.$inject = ["$state", "CoupleFactory", "MainFactory", "$rootScope"];
 
-  function NavBarController($state, CoupleFactory, MainFactory, $rootScope) {
-    var vm = this;
+    //--------------FOR GETTING ID TO EDIT. IF NO ID IS SENT THEN STAY IN EDIT HTML------------ 
+
+
+
+    function NavBarController($state, CoupleFactory, MainFactory, $rootScope) {
+      var vm = this;
     // vm.couple = {};
+
+
     vm.loggedInCouple = $rootScope._couple;
     //Logs you in on register
     vm.register = function() {
