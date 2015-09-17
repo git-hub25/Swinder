@@ -17,6 +17,11 @@
 
 		<div class="navbar navbar-app navbar-absolute-top">
 
+			
+			<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+				<a ui-sref="Home"><img src="http://i36.photobucket.com/albums/e25/kandianne/swinder_logo.png" height="60px" width="60px" alt="swinder_logo.png"/></a>
+			</div>
+
 			<div ng-show="nav.loggedInCouple">
 				<a ui-sref="Home">Home</a>
 				<a ui-sref="Profile">Profile</a>
@@ -27,12 +32,6 @@
 			<div ng-hide="nav.loggedInCouple">
 				<a ui-sref="RegisterCouple">Register </a>
 				<a ui-sref="LoginCouple">Login</a>
-			</div>
-
-
-
-			<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-				<img src="http://i36.photobucket.com/albums/e25/kandianne/swinder_logo.png" height="60px" width="60px" alt="swinder_logo.png"/>
 			</div>
 
 
