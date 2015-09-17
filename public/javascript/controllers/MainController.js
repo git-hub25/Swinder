@@ -20,15 +20,6 @@
 
 		// var loggedInCouple = $rootScope._couple ;
 
-
-		vm.getConversation = function(loggedInId, recipientId) {
-			vm.newConversation = {
-				createdBy: loggedInId,
-				recipient: recipientId
-			} ;
-			MessageFactory.enterConversation(vm.newConversation).then(function(res) {
-				console.log(res) ;
-			})
 		}
 		// Testing getConversation
 		// vm.getConversation(26, 26) ;

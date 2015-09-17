@@ -59,7 +59,7 @@ router.post('/conversation', function(req, res) {
 
 //get all messages
 router.get('/', function(req, res) {
-	Message.find({}).populate('createdBy')
+	Message.find({}).populate('createdBy', '_id username name1 name2 profilePic')
 	.exec(function(err, Conversation) {
 		if(err) return res.status(500).send({err: "Error getting all messages"});
 		if(!Conversation) return res.status(400).send({err: "Messages don't exist"});

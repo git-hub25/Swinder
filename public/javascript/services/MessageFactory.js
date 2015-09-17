@@ -49,7 +49,6 @@
 		o.getMessages = function() {
 			var q = $q.defer();
 			$http.get('/api/message/').success(function(res) {
-				console.log(res);
 				q.resolve(res);
 			});
 			return q.promise;
