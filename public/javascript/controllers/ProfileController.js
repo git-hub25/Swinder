@@ -14,6 +14,13 @@
       CoupleFactory.getCoupleLoggedIn($stateParams.id).then(function(res) {
         vm.couple = res;
       }) ;
+    };
+
+    vm.getConversations = function() {
+      //Get request for conversations
+      MessageFactory.getConversations($rootScope._couple.id).then(function(res) {
+        console.log(res);
+      });
     }
 
     //checks if visitor is logged in

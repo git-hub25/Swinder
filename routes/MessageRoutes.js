@@ -30,7 +30,7 @@ router.post('/', function(req, res) {
 router.post('/newMessage', auth, function(req, res) {
 
 	//req.body contains the createdBy, createdDate, and body
-	var message = new Message(req.body);
+	var message = new Message(req.body.actualMessage);
 	console.log(message, "line 24 CoupleREoutes");
 	message.save(function(err, messageResult) {
 		if(err) return res.status(500).send({err: 'Issues with the Swinder server.'});

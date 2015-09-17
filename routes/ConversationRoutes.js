@@ -63,12 +63,24 @@ router.get('/:id', function(req, res) {
 			conversation.createdDate = new Date();
 			conversation.save(function (err, newConvoCreated) {
 				if(err) return res.status(500).send({err: "There was an error saving the new converstaion!!"});
-				if(!newConvoCreated)	return res.status(500).send({err: "Umm not sure what happened but saving the conversation went wrong"});
+				if(!newConvoCreated) return res.status(500).send({err: "Umm not sure what happened but saving the conversation went wrong"});
+				Couple.update({_id: req.recipientId}, {$push:
+					{conversation: {_id: newConvoCreated._id}}}, 
+					function(err, result){
+						if(err) return res.status(500).send({err: "There was an error updating the new converstaion!!"});
+						if(!result) return res.status(500).send({err: "Umm not sure what happened but updating the conversation went wrong"});
+					});
+				Couple.update({_id: req.createdById}, {$push:
+					{conversation: {_id: newConvoCreated._id}}}, 
+					function(err, result){
+						if(err) return res.status(500).send({err: "There was an error updating the new converstaion!!"});
+						if(!result) return res.status(500).send({err: "Umm not sure what happened but updating the conversation went wrong"});
+					});
 				return res.send(newConvoCreated);
 			})
-		}
-		else res.send(convoAlreadyThere);
-	});
+}
+else res.send(convoAlreadyThere);
+});
 });
 
 //edit conversation

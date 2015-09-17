@@ -21,16 +21,7 @@
         console.log(res);
       });
 
-    //Needs to be fixed!!
-    vm.getConversations = function() {
-      //Get request for conversations
-      MessageFactory.getConversations($rootScope._couple.id).then(function(res) {
-        console.log(res);
-      })
-
-
-    }
-    vm.loadConversations();
+      vm.loadConversations();
 
 
     //not working what the fuck

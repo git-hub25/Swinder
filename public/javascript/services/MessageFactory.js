@@ -33,22 +33,6 @@
 		//-----------------MESSAGE FUNCTIONS---------------------------------------------------------
 
 
-		o.getMessage = function(id) {
-			var q = $q.defer();
-			$http.get('/api/message/' + id).success(function(res) {
-				console.log('Message retrieved');
-				q.resolve();
-			});
-			return q.promise;
-		};
-
-		// o.getMessages = function() {
-		// 	var q = $q.defer();
-		// 	$http.get('/api/message/').success(function(res) {
-		// 		q.resolve(res);
-		// 	});
-		// 	return q.promise;
-		// };
 		o.getConversations = function(){
 			var q = $q.defer();
 			$http.post("/api/message/", {_id: $rootScope._couple.id}, getAuth()).success(function (res) {
@@ -68,21 +52,20 @@
 			return q.promise;
 		};
 
-		o.sendMessage = function(message){
+		o.getMessage = function(id) {
 			var q = $q.defer();
-			$http.post('/api/message/newMessage', message, getAuth()).success(function(res) {
-				console.log(res);
+			$http.get('/api/message/' + id).success(function(res) {
+				console.log('Message retrieved');
 				q.resolve();
 			});
 			return q.promise;
 		};
 
-		o.editMessage = function(newMessage, oldMessage) { //FIGURE OUT ARGUMENTS
-			console.log('edit started');
+		o.sendMessage = function(message){
 			var q = $q.defer();
-			$http.put('/api/message/' + oldMessage._id, newMessage).success(function(res) {
+			$http.post('/api/message/newMessage', {actualMessage: message, conversationId: $rootScope._conversation._id}, getAuth()).success(function(res) {
+				console.log(res);
 				q.resolve();
-				console.log('edit finished');
 			});
 			return q.promise;
 		};
