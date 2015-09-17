@@ -1,7 +1,7 @@
 <div class="well text-center">
 
 	<p>
-		<img class="img img-circle" src="" height='90px' width='90px'>
+		<img class="img img-circle" ng-src="{{vm.coupleLoggedIn.profilePic}}" height='90px' width='90px'>
 	</p>
 	<h3>{{vm.coupleLoggedIn.name1}} and {{vm.coupleLoggedIn.name2}}</h3>
 	<p>Username {{vm.coupleLoggedIn.username}}</p>
@@ -19,9 +19,9 @@
 
 	<div>
 		<a type="btn" ui-sref="EditProfile({id:vm.coupleLoggedIn._id})" class="btn btn-sm info"><span class="glyphicon glyphicon-pencil"></span> Edit Profile</a>
-</div>
-<br/>
-<br/>
+	</div>
+	<br/>
+	<br/>
 </div>
 <div class="row">
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">

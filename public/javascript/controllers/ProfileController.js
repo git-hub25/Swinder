@@ -34,9 +34,9 @@
 
     vm.enterConversation = function(coupleToChatWithId) {
      MessageFactory.enterConversation(coupleToChatWithId).then(function (res) {
-
-       $state.go('CreateMessage');
-     });
+      $rootScope._conversation = res;
+      $state.go('CreateMessage');
+    });
    };
 
    vm.loadMatches = function() {

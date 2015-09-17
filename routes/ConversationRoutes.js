@@ -40,8 +40,19 @@ router.get('/', function(req, res) {
 	});
 });
 
+//get a unique conversation
+router.post('/conversationStart', function(req, res) {
+	Conversation.find(req.body).populate('messages')
+	.exec(function(err, conversation) {
+		if(err) return res.status(500).send({err: "error getting all conversations"});
+		if(!conversation) return res.status(500).send({err: "conversations do not exist"});
+		res.send(conversation);
+	});
+});
+
+
 //get one conversation with some Logic ;)
-//It searches the the Convesation collection for a converstaion between individual and recipient
+//It searches the the Conversation collection for a converstaion between individual and recipient
 //If the converstaion exists, great, it returns it on line 57
 //If not it creates one with the recipientId and the loggedInUserId as recipient and createdBy property respectively
 router.get('/:id', function(req, res) {
@@ -53,7 +64,7 @@ router.get('/:id', function(req, res) {
 			conversation.save(function (err, newConvoCreated) {
 				if(err) return res.status(500).send({err: "There was an error saving the new converstaion!!"});
 				if(!newConvoCreated)	return res.status(500).send({err: "Umm not sure what happened but saving the conversation went wrong"});
-				 return res.send(newConvoCreated);
+				return res.send(newConvoCreated);
 			})
 		}
 		else res.send(convoAlreadyThere);

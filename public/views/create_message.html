@@ -17,14 +17,13 @@
 <br>
 <br>
 <!-- The name in the h1 should be the user's match-->
-<form class="well container" ng-submit="vm.sendMessage(vm.loggedInCouple.id)">
+<form class="well container" ng-submit="vm.sendMessage()">
 	<label>Messages</label>
 	<br/>
 	<div class="well" ng-repeat="m in vm.messages track by $index">
 		<div ng-class="{blue: $index % 2 === 0, red: $index % 2 !== 0 }">
 			<h4>{{m.messageBody}}</h4>
 			<p>{{m.createdBy.username}}</p>
-
 			<button type="button" ng-click="vm.deleteMessage(m)" class="btn-xs btn btn-danger">
 				<span class="glyphicon glyphicon-remove"></span>
 			</button>
