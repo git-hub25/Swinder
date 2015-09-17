@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('app')
-    .controller('NavBarController', NavBarController);
+  .controller('NavBarController', NavBarController);
 
   NavBarController.$inject = ["$state", "CoupleFactory", "MainFactory", "$rootScope"];
 
@@ -22,9 +22,6 @@
         $state.go("LoginCouple");
       });
     };
-
-
-    
 
     vm.login = function() {
       CoupleFactory.login(vm.couple).then(function() {
