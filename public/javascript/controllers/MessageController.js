@@ -27,7 +27,6 @@
         MessageFactory.sendMessage(vm.message).then(function(res) {
           delete vm.message;
         });
-        console.log('vm.sendMessage!')
       };
 
       vm.sendMessage();
