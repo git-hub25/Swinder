@@ -26,6 +26,7 @@
 		};
 
 		vm.likeProfile = function(profile) {
+			
 			vm.matches.push(profile);
 			vm.getProfiles();
 
