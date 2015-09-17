@@ -134,8 +134,14 @@ router.post('/set-matches', function (req, res) {
     if(!couple) return res.status(400).send({err: "No such couple!"});
     res.send(couple);
   })
-})
+});
 
+/*
+Randomizer on server side because we can't get disliked users to not display
+router.get('/randomizer', function(req, res) {
+  Couple.find({})
+})
+*/
 router.post('/get-matches', function (req, res) {
   Couple.findOne(req.body, {matches: 1}).exec(function(err, coupleWithJustArrayOfMatches) {
     if(err) return res.status(500).send({err: "Error handling server request for swing matches"});

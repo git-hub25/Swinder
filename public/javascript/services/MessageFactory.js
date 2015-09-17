@@ -17,9 +17,6 @@
 			return auth;
 		};
 
-			/* because of how we have messages and conversation setup, do I have to edit
-			format of get and post calls? I'll explore.
-			*/
 
 		//-----------------CONVERSATION FUNCTIONS---------------------------------------------------------
 
@@ -28,10 +25,9 @@
 			var q = $q.defer();
 			$http.get('/api/conversation/'+ recipientId + "|" + $rootScope._couple.id).success(function(res) {
 				console.log(res);
-				q.resolve();
+				q.resolve(res);
 			});
 			return q.promise;
-
 		};
 
 		//-----------------MESSAGE FUNCTIONS---------------------------------------------------------
@@ -60,12 +56,22 @@
 
 			})
 			return q.promise;
-		}
+		};
+
+		//gets a single conversation
+		o.getConversation = function(){
+			var q = $q.defer();
+			$http.post("/api/conversation/conversationStart", {_id: $rootScope._conversation._id}, getAuth()).success(function (res) {
+				q.resolve(res);
+
+			})
+			return q.promise;
+		};
 
 		o.sendMessage = function(message){
 			var q = $q.defer();
 			$http.post('/api/message/newMessage', message, getAuth()).success(function(res) {
-				console.log(res.createdBy);
+				console.log(res);
 				q.resolve();
 			});
 			return q.promise;

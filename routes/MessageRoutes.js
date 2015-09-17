@@ -27,7 +27,6 @@ router.post('/', function(req, res) {
 	})
 });
 
-//Populate not working!!!!!!
 router.post('/newMessage', auth, function(req, res) {
 
 	//req.body contains the createdBy, createdDate, and body
@@ -36,8 +35,8 @@ router.post('/newMessage', auth, function(req, res) {
 	message.save(function(err, messageResult) {
 		if(err) return res.status(500).send({err: 'Issues with the Swinder server.'});
 		if(!messageResult) return res.status(400).send({err: "Could not send message."})
-			Couple.update({_id: message.createdBy}, {$push: {
-				conversation: {
+			Conversation.update({_id: req.body.conversationId}, {$push: {
+				message: {
 					_id: messageResult._id
 				}
 			}}, function(err, createdBy) {
