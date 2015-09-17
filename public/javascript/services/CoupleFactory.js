@@ -56,9 +56,9 @@
 	};
 
 	o.logout = function() {
-		removeToken() ;
+		removeToken();
 		$rootScope._couple = isLoggedIn() ;
-	}
+	};
 
 	function urlBase64Decoder(str) {
 		var output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -70,7 +70,7 @@
 			throw 'Illegal base64url string'
 		}
 		return decodeURIComponent(escape($window.atob(output)));
-	}
+	};
 
 
 
@@ -82,7 +82,15 @@
 			q.resolve(res);
 		})
 		return q.promise;
-	}
+	};
+
+	o.getCouples = function() {
+		var q = $q.defer();
+		$http.get('/api/couple').success(function(res) {
+			q.resolve(res);
+		});
+		return q.promise;
+	};
 
 
 	o.editProfile = function (edittedProfile) {
