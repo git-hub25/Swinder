@@ -1,3 +1,11 @@
+.matchPhoto {
+	height: 200px;
+}
+
+.profileBox {
+	margin-top: 50px;
+	
+}
 
 body {
 	overflow-y:auto !important;
