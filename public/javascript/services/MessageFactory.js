@@ -7,14 +7,14 @@
 
 	function MessageFactory($http, $q) {
 		var o = {};
-		
+
 		var getAuth = function() {
 			var auth = {
 				headers: {
 					Authorization: "Bearer " + localStorage.getItem("token")
 				}
 			};
-			return auth; 
+			return auth;
 		};
 
 			/* because of how we have messages and conversation setup, do I have to edit
@@ -23,7 +23,7 @@
 
 		//-----------------CONVERSATION FUNCTIONS---------------------------------------------------------
 
-<<<<<<< HEAD
+
 		o.enterConversation = function(conversation) {
 			var q = $q.defer();
 			$http.post('/api/message/conversation', conversation).success(function(res) {
@@ -31,10 +31,7 @@
 				q.resolve();
 			});
 			return q.promise;
-=======
-		o.enterConversation = function(id) {
-			console.log('started!');
->>>>>>> 6db1fc67e52885f7632133695445b79805e79f41
+
 		};
 
 		//-----------------MESSAGE FUNCTIONS---------------------------------------------------------

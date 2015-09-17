@@ -21,8 +21,10 @@
 			<a ui-sref="RegisterCouple">Register </a>
 			<a ui-sref="Profile">Profile</a>
 			<a ui-sref="CreateMessage">CreateMessage</a>
-			<a ui-sref="LoginCouple">Login</a>
-			
+			<a ng-hide="nav.loggedInCouple" ui-sref="LoginCouple">Login</a>
+			<a ng-show="nav.loggedInCouple" ng-click="nav.logout();">Logout</a>
+
+
 			<div class="navbar-brand navbar-brand-center" ui-yield-to="title">
 				<img src="http://i36.photobucket.com/albums/e25/kandianne/swinder_logo.png" height="60px" width="60px" alt="swinder_logo.png"/>
 			</div>
@@ -34,10 +36,10 @@
 
 			<div class="btn-group pull-left">
 				<div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle btn-group">
-					
-					
-					<a ui-turn-on='myDropdown' class="btn"><i class="fa fa-bars"></i>Menu</a>				
-					<ul class="dropdown-menu" 
+
+
+					<a ui-turn-on='myDropdown' class="btn"><i class="fa fa-bars"></i>Menu</a>
+					<ul class="dropdown-menu"
 					ui-outer-click="Ui.turnOff('myDropdown')"
 					ui-outer-click-if="Ui.active('myDropdown')"
 					role="menu" ui-show="myDropdown" ui-state="myDropdown"
@@ -48,8 +50,9 @@
 					<li><a ui-sref="Profile">Profile</a></li>
 					<li><a ui-sref="CreateMessage">CreateMessage</a></li>
 					<li><a ui-sref="LoginCouple">Login</a></li>
+					<li><a ng-click="alert('Hey')">Logout</a></li>
 				</ul>
-				
+
 
 			</div>
 		</div>
@@ -61,7 +64,7 @@
 
 
 
-		<ui-view style="position: relative; top: 10px;"></ui-view>
+		<ui-view></ui-view>
 	</div>
 
 
