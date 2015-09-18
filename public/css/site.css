@@ -19,6 +19,10 @@ h2 {
 	font-weight: bold;
 }
 
+.relationOptions {
+	background-color: #900000;
+}
+
 .loggedInName {
 	font-family: 'Open Sans Condensed', sans-serif;
 }
@@ -148,7 +152,8 @@ p{
 
 		.mobileTitle {
 			margin-top: 1.3em;
-			text-align: right;
+			margin-left: 70%;
+			font-size: 2em;
 		}
 
 		.loggedInNav, .title {
