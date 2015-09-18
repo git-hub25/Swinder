@@ -1,8 +1,39 @@
 body {
 	overflow-y:auto !important;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	background-color: black;
+	font-family: 'Open Sans Condensed', sans-serif;
+	background: linear-gradient(white, #777); /* Standard syntax */
 	padding-top: 6em;
+	text-align: center;
+
+
+}
+
+h1 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.6em;
+}
+
+h2 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.9em;
+	font-weight: bold;
+}
+
+
+.btn {
+	background-color: #900000;
+	box-shadow: 1px 1px 3px black;
+	border: none;
+	color: white;
+}
+
+.title {
+	margin: 7px 7px 3px 3px;
+	font-size: 1.6em;
+}
+
+.title a:hover {
+	color: black;
 }
 
 .container{
@@ -19,65 +50,123 @@ body {
 }
 
 .navbar {
-	background-color: black;
-	color: white;
+	background-color: #700000;
+	color:#4A148C;
 	border: none;
-	box-shadow: 1px 1px 7px #BF0000;
 	height: 3.5em;
+	font-size: 1.2em;
+	padding: auto;
+	font-family: 'Open Sans Condensed', sans-serif;
+
 }
 
 .navbar a, .navbar a:visited {
-	color: #BF0000;
+	color: white;
 	text-decoration: none;
+	font-family: 'Open Sans Condensed', sans-serif;
+
 }
 
-.navbar a:hover {
+a:hover {
 	font-weight: bold;
+	color: black;
+}
+
+.likes {
+	
+}
+
+.profile {
+	height: 100%;
+	padding-bottom: 6em;
 }
 
 .loggedOutHomeView {
-	background-color: #BF0000;
 	width: 50%;
 	margin: auto;
-	color: black;
 	border: none;
+}
+.loggedOutHomeView p {
+	font-size: 1.6em;
 }
 
 .loggedInNav {
-	font-size: 1.3em;
+	font-size: 1.1em;
 	padding-top: .7em;
 }
 
 
 .loggedInNav a {
 	margin: auto .6em;
+	font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .loggedInNav a:hover {
-	color: white;
+	color: #000;
 }
+
+p{
+	color: black;
+	font-weight: bold;
+}
+
+.socialLinks {
+	color: white;
+	font-size: 2em;
+}
+
 .well {
 	width: 400px;
 	margin: auto;
+	background-color: #700000;
+	border: none;
+	color: white;
+	font-size: 1em;
 }
 
-.mobileNavMenu {
+
+
+
+.mobileNavMenu, .mobileTitle {
 	display: none;
 }
 
 
+/* Portrait and Landscape */
+@media only screen and (max-width: 960px) {
 
-/*================MEDIA QUERIES=====================*/
-
-@media only screen and (max-width: 667px){
-
-	.loggedInNav, .loggedOutNav {
-		display: none;
-	}
-
-	.mobileNavMenu {
+	.mobileNavMenu, .mobileTitle {
 		display: inline;
 	}
 
+	/*.mobileNavMenu a, .mobileTitle a {
+		margin-top: 30px;
+		}*/
 
-}
+		.mobileTitle {
+			margin-top: 1.3em;
+			text-align: right;
+		}
+
+		.loggedInNav, .title {
+			display: none;
+		}
+
+		.well {
+			height: 80%;
+			width: 80%;
+		}
+
+		.well img {
+			height: 100px;
+			width: 100px;
+		}
+
+		.dropdownLink li {
+			background-color: red;
+		}
+
+	}
+
+
+

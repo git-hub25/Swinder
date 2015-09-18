@@ -1,19 +1,18 @@
-<div class="well text-center">
+<div class="well text-center profile">
 
 	<p>
 		<img class="img img-circle" ng-src="{{vm.coupleLoggedIn.profilePic}}" height='90px' width='90px'>
 	</p>
-	<h3>{{vm.coupleLoggedIn.name1}} and {{vm.coupleLoggedIn.name2}}</h3>
-	<p>Username {{vm.coupleLoggedIn.username}}</p>
-	<p>Email {{vm.coupleLoggedIn.email}}</p>
-	<p>About {{vm.coupleLoggedIn.about}}</p>
-	<p>Relationship Type {{vm.coupleLoggedIn.relationshipType}}</p>
-	<h6>Social Media Links</h6>
+	<h2>{{vm.coupleLoggedIn.name1}} and {{vm.coupleLoggedIn.name2}}</h2>
+	<strong>Username:</strong> {{vm.coupleLoggedIn.username}}</p>
+	<strong>Email:</strong> <p>{{vm.coupleLoggedIn.email}}</p>
+	<strong>About:</strong> <p>{{vm.coupleLoggedIn.about}}</p>
+	<strong>Relationship Type:</strong><p> {{vm.coupleLoggedIn.relationshipType}}</p>
 	<table class="table table­condensed table­responsive">
 		<tr>
-			<td><a href="{{vm.coupleLoggedIn.socialLinks.facebook}}">Facebook</a></td>
-			<td><a href="{{vm.coupleLoggedIn.socialLinks.instagram}}">Instagram</a></td>
-			<td><a href="{{vm.coupleLoggedIn.socialLinks.twitter}}">Twitter</td>
+			<td><a href="{{vm.coupleLoggedIn.socialLinks.facebook}}"><i class="fa fa-facebook-square  socialLinks"></i></a></td>
+			<td><a href="{{vm.coupleLoggedIn.socialLinks.instagram}}"><i class="fa fa-instagram  socialLinks"></i></a></td>
+			<td><a href="{{vm.coupleLoggedIn.socialLinks.twitter}}"><i class="fa fa-twitter-square  socialLinks"></td>
 		</tr>
 	</table>
 
@@ -22,16 +21,14 @@
 	</div>
 	<br/>
 	<br/>
-</div>
-<div class="row">
-	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			<div ng-repeat="couple in vm.likedCouples">
-				<span>{{couple.username}}</span>
-				<a ng-click="vm.enterConversation(couple._id)" class="btn btn-sm info">
-					<span class="glyphicon glyphicon-comment"></span>
-				</a>
-			</div>
-		</div>
+	
+	<div  ng-repeat="couple in vm.likedCouples" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 likes">
+		
+		<a ng-click="vm.enterConversation(couple._id)" class="btn btn-sm">
+			<span class="glyphicon glyphicon-comment"></span>&nbsp; &nbsp;{{couple.username}}
+		</a>
+
 	</div>
+
 </div>
+

@@ -20,7 +20,7 @@
 <form class="well container" ng-submit="vm.sendMessage()">
 	<label>Messages</label>
 	<br/>
-	<div class="well" ng-repeat="m in vm.conversationMessages track by $index | orderBy: 'createdDate'">
+	<div class="well  animated fadeInUp" ng-repeat="m in vm.conversationMessages track by $index | orderBy: 'createdDate'">
 		<div ng-class="{blue: vm.recipientCouple === m.createdBy._id, red: vm.loggedInCouple === m.createdBy._id}">
 			<h4 style>{{m._id}}</h4>
 			<h4 style>{{m.messageBody}}</h4>

@@ -6,3 +6,8 @@ propertyOfObjects - all property names on objects are camelCase
 
 
 PUT AN ALERT WHEN PASSWORD AND USERNAME COMBO ARE INCORRECT
+
+
+1. fix navbar links and hide certain links in when logged out on dropdown menu.
+3. add mobile queries
+4. 

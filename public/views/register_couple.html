@@ -1,6 +1,6 @@
 
 
-<h1>CREATE NEW PROFILE</h1>
+<h1>Create New Profile</h1>
 <form class="well container" ng-submit="nav.register()">
 	<label>Your Name</label> <br/>
 	<input class="form-control" placeholder="Your Name..." ng-model="nav.couple.name1" />
@@ -19,11 +19,11 @@
 		<option value="Gay">Gay</option>
 		<option value="Lesbian">Lesbian</option>
 	</select><br/>
-	<label>Facebook Link</label> <br/>
+	<label>Facebook Link</label> <i class="fa fa-facebook-square  socialLinks"></i><br/>
 	<input class="form-control" placeholder="Facebook..." ng-model="nav.couple.socialLinks.facebook"  />
-	<label>Instagram Link</label> <br/>
+	<label>Instagram Link</label> <i class="fa fa-instagram  socialLinks"></i> <br/>
 	<input class="form-control" placeholder="Instagram..." ng-model="nav.couple.socialLinks.twitter"    />
-	<label>Twitter Link</label> <br/>
+	<label>Twitter Link</label> <i class="fa fa-twitter-square  socialLinks"></i> <br/>
 	<input class="form-control" placeholder="Twitter..." ng-model="nav.couple.socialLinks.instagram"   />
 	<label>Email</label> <br/>
 	<input type="email" class="form-control" placeholder="Email..." ng-model="nav.couple.email"   />
@@ -32,6 +32,6 @@
 	<label>Confirm Password</label> <br/>
 	<input type="password" class="form-control" placeholder="Confirm Password..." />
 	<div style="text-align: center;">
-		<button type="submit">Submit</button>
+		<button type="submit" class="btn">Submit</button>
 	</div>
 </form>

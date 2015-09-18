@@ -1,6 +1,6 @@
 <div ng-show="nav.loggedInCouple">
 	<div class="profileBox well container text-center">
-		<img class="matchPhoto" ng-click="" ng-src="{{vm.randomProfile.profilePic}}" height='200px' width='300px'/>
+		<img class="matchPhoto img img-rounded" ng-click="" ng-src="{{vm.randomProfile.profilePic}}" height='200px' width='300px'/>
 
 		<!-- otherPics is an array -->
 		<!--<img ng-src="{{vm.randomProfile.otherPics}}"/> have this be a carousel-->
@@ -20,6 +20,8 @@
 			<a ui-sref="Home"><img src="http://i36.photobucket.com/albums/e25/kandianne/swinder_logo.png" alt="swinder_logo.png"/></a>
 		</div>
 		<p>A place to discover fun couples and fulfill your Swinging desires.</p>
+		<br/>
+		<br/>
 		<a ui-sref="LoginCouple" class="btn btn-default btn-sm">LOGIN</a> 
 		<a ui-sref="RegisterCouple" class="btn btn-default btn-sm">REGISTER</a> 
 	</div>
