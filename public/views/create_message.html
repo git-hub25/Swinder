@@ -1,11 +1,11 @@
 <style>
 	.red {
-		color: red;
+		/*color: red;*/
 		text-align: right
 	}
 
 	.blue {
-		color: blue;
+		/*color: blue;*/
 		text-align: left;
 	}
 </style>
@@ -22,12 +22,12 @@
 	<br/>
 	<div class="well  animated fadeInUp" ng-repeat="m in vm.conversationMessages track by $index | orderBy: 'createdDate'">
 		<div ng-class="{blue: vm.recipientCouple === m.createdBy._id, red: vm.loggedInCouple === m.createdBy._id}">
-			<h4 style>{{m._id}}</h4>
 			<h4 style>{{m.messageBody}}</h4>
-			<p>{{m.createdBy.username}}</p>
+			<p>-{{m.createdBy.username}}</p>
+		<!-- fix delete button 
 			<button type="button" ng-click="vm.deleteMessage(m)" class="btn-xs btn btn-danger">
 				<span class="glyphicon glyphicon-remove"></span>
-			</button>
+			</button> -->
 		</div>
 	</div>
 	<input class="form-control" ng-model="vm.message.messageBody" placeholder="Write Message Here..." />

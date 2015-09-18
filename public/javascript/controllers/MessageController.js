@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('app')
-    .controller('MessageController', MessageController);
+  .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$state', 'MessageFactory', '$rootScope'];
 
@@ -33,7 +33,7 @@
     };
 
 
-
+    //fix deleteMessage and deleteConversation
     vm.deleteMessage = function(message) {
       vm.messages.splice(vm.messages.indexOf(message), 1);
       MessageFactory.deleteMessage(message);
