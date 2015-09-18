@@ -19,6 +19,9 @@ h2 {
 	font-weight: bold;
 }
 
+.loggedInName {
+	font-family: 'Open Sans Condensed', sans-serif;
+}
 
 .btn {
 	background-color: #900000;
